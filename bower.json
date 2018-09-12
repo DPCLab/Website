@@ -1,0 +1,21 @@
+{
+  "name": "dpc-website",
+  "description": "Landing page for DPCLab, hosting all our research, projects, and blog posts.",
+  "main": "index.js",
+  "authors": [
+    "Jeffrey Shen <jeffreyshencc@gmail.com> (http://jeffreyshen.com)"
+  ],
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://github.com/DPCLab/Website",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "bulma": "^0.7.1"
+  }
+}
