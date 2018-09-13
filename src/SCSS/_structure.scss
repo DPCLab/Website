@@ -1,0 +1,64 @@
+html{
+  overflow-y: hidden;
+}
+
+.columns{
+  margin: 0;
+  padding: 0;
+}
+
+.column{
+  height: 100vh;
+}
+
+#left{
+  text-align: center;
+  position: relative;
+  nav{
+    text-align: left;
+    a{
+      margin-right: 15px;
+    }
+    img{
+      height: 50px;
+      width: auto;
+      margin-right: 20px;
+      margin-bottom: -20px;
+    }
+  }
+
+  center{
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: 40%;
+    transform: translateY(-40%);
+
+    #wordmark{
+      width: 100%;
+      position: relative;
+    }
+  }
+
+  #github{
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 1.3em;
+  }
+}
+
+#right{
+  background-image: url("../../assets/graphics/cover.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+  #credit{
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: white;
+  }
+}
