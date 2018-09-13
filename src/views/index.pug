@@ -14,27 +14,18 @@ html(lang='en')
     link(href='dist/CSS/main.css', rel='stylesheet', type='text/css')
   body
     .columns
-      .column.is-two-fifths#left
-        nav
-          img(src = "./assets/graphics/icon/icon_black.png")
-          a(href = "") Blog
-          a(href = "") Research
-          a(href = "") Projects 
-          
-          //.dropdown
-            .dropdown-trigger
-              button.button(aria-haspopup = "true" aria-controls= "dropdown-menu")
-                span Projects
-            .dropdown-menu#dropdown-menu(role="menu")
-              .dropdown-content
-                a.dropdown-item(href = "") China
-                a.dropdown-item(href = "") Russia      
+      .column.is-one-third#left
         center
           img#wordmark(src = "./assets/graphics/icon/wordmark_black.png")
-          p Lorem ipsum
-        a#github(href = "https://github.com/DPCLab" target = "_blank")
-          i.fab.fa-github
-      .column.is-three-fifths#right
+          p A student-driven Independent Project at Phillips Academy.
+        nav 
+          a#github(href = "https://github.com/DPCLab" target = "_blank")
+            i.fab.fa-github
+        .right
+          a(href = "") Blog
+          a(href = "") Research
+          a(href = "") Projects  
+      .column.is-two-thirds#right
         a#credit(href = "https://www.npr.org/2013/01/29/170469038/in-china-beware-a-camera-may-be-watching-you") Image courtesy of NPR
     script(src='bower_components/jquery/dist/jquery.min.js')
     script(src='dist/script-min.js')

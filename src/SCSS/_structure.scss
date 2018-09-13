@@ -14,17 +14,19 @@ html{
 #left{
   text-align: center;
   position: relative;
-  nav{
-    text-align: left;
+  nav, .right{
+    position: absolute;
+    bottom: 12px;
+    text-align: right;
     a{
       margin-right: 15px;
     }
-    img{
-      height: 50px;
-      width: auto;
-      margin-right: 20px;
-      margin-bottom: -20px;
-    }
+  }
+  .right{
+    right: 12px;
+  }
+  nav{
+    left: 12px;
   }
 
   center{
@@ -39,13 +41,6 @@ html{
       position: relative;
     }
   }
-
-  #github{
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    font-size: 1.3em;
-  }
 }
 
 #right{
@@ -58,7 +53,7 @@ html{
   #credit{
     position: absolute;
     bottom: 12px;
-    left: 12px;
+    right: 12px;
     color: white;
   }
 }
