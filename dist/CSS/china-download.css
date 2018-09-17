@@ -1,0 +1,1 @@
+@font-face{font-family:"Lato";src:url("../../assets/fonts/Lato-Black.ttf")}body{width:100vw;height:100vh;overflow:hidden;background-image:linear-gradient(to bottom right, #c31432, #240b36);color:white}center{font-family:"Lato";top:50%;position:relative;transform:translateY(-50%)}center h1{font-size:4em}center p{font-size:1.2em;width:80%;margin:0 auto}
