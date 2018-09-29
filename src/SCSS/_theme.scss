@@ -11,6 +11,16 @@ $accent: #9c88ff;
   src: url("../../assets/fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf");
 }
 
+h1, h2, h3, h4, h5, h6{
+  font-family: "IBM_Plex_Sans";
+  font-weight: bold;
+  color: black;
+}
+
+h1{
+  font-size: 2em;
+}
+
 p{
   font-family: "IBM_Plex_Sans";
 }
@@ -33,4 +43,9 @@ a, .dropdown span, .dropdown-item{
 
 #dropdown-menu, .dropdown, .dropdown-menu, .dropdown-content{
   border: none;
+}
+
+#icon{
+  width: 50px;
+  height: auto;
 }
