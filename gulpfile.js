@@ -39,8 +39,10 @@ gulp.task('sass', function () {
 });
 
 gulp.task('compress', function() {
-  gulp.src(["src/JS/*.js", 'src/JS/components/*.js'])
-  .pipe(concat('script.js'))
+  gulp.src(["src/JS/script.js"])
+    .pipe(minify({}))
+    .pipe(gulp.dest('dist'));
+  gulp.src(["src/JS/china.js"])
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));
 });
