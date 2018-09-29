@@ -18,23 +18,13 @@ html(lang='en')
         img#icon(src = "../assets/graphics/icon/icon_transparent.png")
     #body
       p A real-time feed of Weibo posts which have been censored by the Chinese Communist Party. Fully <a href = "https://github.com/DPCLab/WeiboScrape" target = "_blank">open-source</a> and <a href = "" target = "_blank">downloadable</a>.
+      p#loading(hidden)
+        i.fas.fa-spinner.fa-spin 
+        strong &nbsp;&nbsp;Updating posts .... 
       br
       .columns
         .column.is-half
-          ol 
-            li 
-              img.profile-photo(src = "../assets/graphics/profile-photo.png")
-              h2 25719******
-              br
-              p.text 你好，你怎么样?
-              br
-              | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>LAST SEEN:</span> 2018-09-29 (23:02:31.809) EDT<br>
-            li 
-              img.profile-photo(src = "../assets/graphics/profile-photo.png")
-              h2 25719******
-              br
-              p.text 你好，你怎么样?
-              br
-              | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>LAST SEEN:</span> 2018-09-29 (23:02:31.809) EDT<br>
+          ol#posts 
     script(src='../bower_components/jquery/dist/jquery.min.js')
+    script(src='../bower_components/d3/d3.min.js')
     script(src='../dist/china-min.js')
