@@ -18,27 +18,23 @@ html(lang='en')
         img#icon(src = "../assets/graphics/icon/icon_transparent.png")
     #body
       p A real-time feed of Weibo posts which have been censored by the Chinese Communist Party. Fully <a href = "https://github.com/DPCLab/WeiboScrape" target = "_blank">open-source</a> and <a href = "" target = "_blank">downloadable</a>.
-      hr
-      ol 
-        li <span>TEXT</span>: 你好<br>
-          | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>CENSORED:</span> 2018-09-29 (23:02:31.809) EDT<br>
-          a(href = "https://weibo.com/2571906604/FfXPwuQXf" target = "_blank")
-            i.fas.fa-sm.fa-external-link-alt
-            | &nbsp;View on Weibo
-        li <span>TEXT</span>: 你好<br>
-          | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>CENSORED:</span> 2018-09-29 (23:02:31.809) EDT<br>
-          a(href = "https://weibo.com/2571906604/FfXPwuQXf" target = "_blank")
-            i.fas.fa-sm.fa-external-link-alt
-            | &nbsp;View on Weibo
-        li <span>TEXT</span>: 你好<br>
-          | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>CENSORED:</span> 2018-09-29 (23:02:31.809) EDT<br>
-          a(href = "https://weibo.com/2571906604/FfXPwuQXf" target = "_blank")
-            i.fas.fa-sm.fa-external-link-alt
-            | &nbsp;View on Weibo
-        li <span>TEXT</span>: 你好<br>
-          | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>CENSORED:</span> 2018-09-29 (23:02:31.809) EDT<br>
-          a(href = "https://weibo.com/2571906604/FfXPwuQXf" target = "_blank")
-            i.fas.fa-sm.fa-external-link-alt
-            | &nbsp;View on Weibo
+      br
+      .columns
+        .column.is-half
+          ol 
+            li 
+              img.profile-photo(src = "../assets/graphics/profile-photo.png")
+              h2 25719******
+              br
+              p.text 你好，你怎么样?
+              br
+              | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>LAST SEEN:</span> 2018-09-29 (23:02:31.809) EDT<br>
+            li 
+              img.profile-photo(src = "../assets/graphics/profile-photo.png")
+              h2 25719******
+              br
+              p.text 你好，你怎么样?
+              br
+              | <span>RECEIVED:</span> 2018-09-28 (23:02:31.809) EDT<br><span>LAST SEEN:</span> 2018-09-29 (23:02:31.809) EDT<br>
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../dist/china-min.js')

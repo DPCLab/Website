@@ -15,11 +15,13 @@ header{
 }
 
 ol{
-  list-style: decimal;
-  padding-left: 15px;
+  list-style-type: none;
 
-  span{
+  span, h2{
     color: $accent;
+  }
+  h2{
+    font-size: 2em;
   }
   a{
     font-weight: normal;
@@ -27,6 +29,24 @@ ol{
     padding-top: 15px;
   }
   li{
-    margin-bottom: 25px;
+    border: 2px solid rgb(242,242,242);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+  .text{
+    font-size: 1.7em;
+    margin-top: 8px;
+  }
+  .profile-photo{
+    width: 40px;
+    height: auto;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: -10px;
+  }
+  h2, .profile-photo{
+    display: inline-block;
   }
 }
