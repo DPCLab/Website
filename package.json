@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DPCLab/Website#readme",
   "devDependencies": {
+    "event-stream": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-minify": "^3.1.0",

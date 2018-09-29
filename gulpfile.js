@@ -4,10 +4,12 @@ var pug = require('gulp-pug');
 var minify = require('gulp-minify');
 var webserver = require('gulp-webserver');
 var concat = require('gulp-concat');
+var es = require('event-stream');
 
 gulp.task('default', ['views', 'sass', 'compress', 'webserver'], function() {
   gulp.watch('src/SCSS/*.scss', ['sass']);
   gulp.watch('src/views/*.pug', ['views']);
+  gulp.watch('src/views/**/*.pug', ['views']);
   gulp.watch('src/views/components/*.pug', ['views']);
   gulp.watch('src/views/sections/*.pug', ['views']);
   gulp.watch('src/JS/*.js', ['compress']);
@@ -15,9 +17,19 @@ gulp.task('default', ['views', 'sass', 'compress', 'webserver'], function() {
 });
 
 gulp.task('views', function buildHTML() {
-  return gulp.src(['src/views/*.pug'])
+  var normal = gulp.src(['src/views/*.pug'])
     .pipe(pug())
     .pipe(gulp.dest('.'));
+
+  var china = gulp.src(['src/views/china/*.pug'])
+    .pipe(pug())
+    .pipe(gulp.dest('./china'));
+
+  var russia = gulp.src(['src/views/russia/*.pug'])
+    .pipe(pug())
+    .pipe(gulp.dest('./russia'));
+
+  return es.concat(normal, china, russia);
 });
 
 gulp.task('sass', function () {
