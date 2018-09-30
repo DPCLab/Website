@@ -19,6 +19,15 @@ header{
 
 #body{
   padding: 20px;
+  a{
+    font-weight: normal;
+    text-decoration: underline;
+    text-decoration-color: $accent;
+    color: inherit;
+    &:hover{
+      color: $accent;
+    }
+  }
 }
 
 ol{

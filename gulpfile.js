@@ -25,11 +25,15 @@ gulp.task('views', function buildHTML() {
     .pipe(pug())
     .pipe(gulp.dest('./china'));
 
+  var china_sub = gulp.src(['src/views/china/list/*.pug'])
+    .pipe(pug())
+    .pipe(gulp.dest('./china/list'));
+
   var russia = gulp.src(['src/views/russia/*.pug'])
     .pipe(pug())
     .pipe(gulp.dest('./russia'));
 
-  return es.concat(normal, china, russia);
+  return es.concat(normal, china, china_sub, russia);
 });
 
 gulp.task('sass', function () {

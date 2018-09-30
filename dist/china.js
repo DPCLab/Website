@@ -4,7 +4,7 @@ function displayPosts(posts, lastSeen){
     .enter()
     .append("li")
     .html(function(d){
-      return "<img class = 'profile-photo' src = '../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + d.retrieved + "<br>";
+      return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + d.retrieved + "<br>";
     });
 }
 
