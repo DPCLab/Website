@@ -8,6 +8,16 @@ function displayPosts(posts, lastSeen){
     });
 }
 
+function displayTrends(trends){
+  d3.select("#trends").selectAll("li")
+    .data(trends)
+    .enter()
+    .append("li")
+    .html(function(d){
+      return d.term + " (" + d.meaning + ")";
+    });
+}
+
 function updatePosts(){
   //Add the loading icon
   $("#loading").show();
@@ -16,6 +26,9 @@ function updatePosts(){
     //Display Posts
     d3.select("#posts").selectAll("*").remove(); //Get rid of existing children
     displayPosts(data.posts, data.lastUpdated);
+
+    //Update trends
+    displayTrends(data.trends);
 
     //Remove the loading icon
     $("#loading").hide();
