@@ -25,9 +25,9 @@ gulp.task('views', function buildHTML() {
     .pipe(pug())
     .pipe(gulp.dest('./china'));
 
-  var china_sub = gulp.src(['src/views/china/list/*.pug'])
+  var china_sub = gulp.src(['src/views/china/dashboard/*.pug'])
     .pipe(pug())
-    .pipe(gulp.dest('./china/list'));
+    .pipe(gulp.dest('./china/dashboard'));
 
   var russia = gulp.src(['src/views/russia/*.pug'])
     .pipe(pug())
