@@ -54,6 +54,9 @@ header{
   }
   overflow: hidden;
   height: 1%;
+  span{
+    color: $accent;
+  }
 }
 
 #post-column{

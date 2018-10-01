@@ -14,7 +14,7 @@ function displayTrends(trends){
     .enter()
     .append("li")
     .html(function(d){
-      return d.term + " (" + d.meaning + ")";
+      return "<span>" + d.term + "</span> (" + d.meaning + ")";
     });
 }
 
