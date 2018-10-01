@@ -19,6 +19,8 @@ header{
 
 #body{
   padding: 20px;
+  width: 80%;
+  margin: 0 auto;
   a{
     font-weight: normal;
     text-decoration: underline;
@@ -28,42 +30,75 @@ header{
       color: $accent;
     }
   }
+  h1{
+    margin: 0;
+  }
 }
 
-ol{
-  list-style-type: none;
-
-  span, h2{
-    color: $accent;
-  }
+#sidebar{
+  border: 2px solid $gray;
+  border-radius: 5px;
   h2{
-    font-size: 2em;
+    font-size:1.5em;
   }
-  a{
-    font-weight: normal;
-    font-size: 0.9em;
-    padding-top: 15px;
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+  ol{
+    margin-top: 5px;
+    padding-left: 25px;
+    font-size: 1.2em;
+    li{
+
+    }
   }
-  li{
-    border: 2px solid rgb(242,242,242);
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px 15px;
-    font-size: 0.8em;
+  overflow: hidden;
+  height: 1%;
+}
+
+#post-column{
+  padding: 0 10px;
+  ol{
+    list-style-type: none;
+    padding-top: 0;
+
+    span, h2{
+      color: $accent;
+    }
+    h2{
+      font-size: 2em;
+    }
+    a{
+      font-weight: normal;
+      font-size: 0.9em;
+      padding-top: 15px;
+    }
+    li{
+      border: 2px solid $gray;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      font-size: 0.8em;
+    }
+    .text{
+      font-size: 1.5em;
+      margin-top: 8px;
+      word-wrap: break-word;
+    }
+    .profile-photo{
+      width: 40px;
+      height: auto;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-bottom: -10px;
+    }
+    h2, .profile-photo{
+      display: inline-block;
+    }
   }
-  .text{
-    font-size: 1.5em;
-    margin-top: 8px;
-    word-wrap: break-word;
-  }
-  .profile-photo{
-    width: 40px;
-    height: auto;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: -10px;
-  }
-  h2, .profile-photo{
-    display: inline-block;
+}
+
+@media screen and (max-width: 600px){
+  #body{
+    width: 100%;
   }
 }
