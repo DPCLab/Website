@@ -1,10 +1,17 @@
+function getTimeDelta(timeStr){ //Gets time between now and a given time in minutes and hours (a str)
+  then = new Date(timeStr);
+  now = new Date();
+  minutes = Math.round((now.getTime() - then.getTime()) / 60000);
+  return (minutes < 60 ? minutes + " minutes": Math.round(minutes / 60) + " hours") + " ago";
+}
+
 function displayPosts(posts, lastSeen){
   d3.select("#posts").selectAll("li")
     .data(posts)
     .enter()
     .append("li")
     .html(function(d){
-      return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + d.retrieved + "<br>";
+      return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "<br>";
     });
 }
 
