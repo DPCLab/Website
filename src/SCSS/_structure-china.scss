@@ -17,6 +17,14 @@ header{
   }
 }
 
+p.disclaimer{
+  font-size: 12px;
+  color: gray;
+  span{
+    color: $accent;
+  }
+}
+
 #body{
   padding: 20px;
   width: 70%;
