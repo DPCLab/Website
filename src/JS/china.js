@@ -2,7 +2,7 @@ function getTimeDelta(timeStr){ //Gets time between now and a given time in minu
   then = new Date(timeStr);
   now = new Date();
   minutes = Math.round((now.getTime() - then.getTime()) / 60000);
-  return (minutes < 60 ? minutes + " minutes": Math.round(minutes / 60) + " hours") + " ago";
+  return (minutes < 60 ? minutes + " minutes": Math.round(minutes / 60) + " HOURS") + " AGO";
 }
 
 // function cleanUpTrendString(trendStr){ //
@@ -25,7 +25,7 @@ function displayPosts(posts, lastSeen){
       .enter()
       .append("li")
       .html(function(d){
-        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><div class = 'level'><div class = 'level-left'><span>LAST SEEN:</span>&nbsp;" + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "</div><div clas = 'level-right'><a class = 'ext-link' href = '" + d.link + "' target = '_blank'>SEE ORIGINAL&nbsp;&nbsp;<i class = 'fas fa-external-link-alt'></i></a></div></div>";
+        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h3>" + ("" + d.uid).substring(0, 5) + "*****</h3><br><p class = 'text'>" + d.text + "</p><br><div class = 'level'><div class = 'level-left'><span>LAST SEEN:</span>&nbsp;" + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "</div><div clas = 'level-right'><a class = 'ext-link' href = '" + d.link + "' target = '_blank'><i class = 'fas fa-external-link-alt'></i></a></div></div>";
       });
   }
 }

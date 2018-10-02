@@ -36,22 +36,22 @@ header{
   }
 }
 
+.explanation{
+  border: none;
+  padding-bottom: 1rem;
+}
+
+.is-8.explanation{
+  padding-left: 30px;
+}
+
 #sidebar{
-  padding: 0;
-  margin: 0;
+  border: 2px solid $gray;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 10px 10px 10px;
   position: sticky;
   top: 12px;
-
-  div{
-    border: 2px solid $gray;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0 10px 10px 10px;
-  }
-
-  h2{
-    font-size:1.5em;
-  }
 
   ul{
     margin-top: 5px;
@@ -77,10 +77,10 @@ header{
     list-style-type: none;
     padding-top: 0;
 
-    span, h2{
+    span, h3{
       color: $accent;
     }
-    h2{
+    h3{
       font-size: 2em;
     }
     a{
@@ -107,7 +107,7 @@ header{
       margin-right: 10px;
       margin-bottom: -10px;
     }
-    h2, .profile-photo{
+    h3, .profile-photo{
       display: inline-block;
     }
     .ext-link{
@@ -115,6 +115,16 @@ header{
       font-size: 1em;
       text-decoration: none;
     }
+  }
+}
+
+@media screen and (max-width: 768px){
+  #sidebar{
+    position: relative;
+  }
+
+  .explanation.is-8{
+    padding-left: 10px;
   }
 }
 

@@ -23,16 +23,26 @@ html(lang='en')
         i.fas.fa-spinner.fa-spin 
         strong &nbsp;&nbsp;Updating posts .... 
       br
+      //- #graphs.columns
+      //-   .column.is-4
+      //-     h1 1,634
+      //-     p TOTAL CENSORED POSTS
+      //-   .column.is-4
+      //-   .column.is-4
+      .columns 
+        .column.is-4.explanation
+          h2 Significant Patterns
+          p Common lexical patterns extracted from the 1,000 most recent potentially censored posts. 
+        .column.is-8.explanation
+          h2 Potentially Censored Posts
+          p Weibo posts that were once available but were subsequently taken down by either Weibo (as required by the Chinese government) or the user. 
       .columns
         #sidebar.column.is-4(style = "display:none")
-          #topics
-            h2 Controversial Topics
-            ul#trends
-          #info
-            p Keywords which are similar amongst the most recently censored posts. Download the full list <a href = "">here</a>.
+          ul#trends      
         #post-column.column.is-8(style = "display:none")
           ol#posts
-          p#end-message(hidden) <br>You've reached the end of this batch! Download the full list of terms <a href = "">here</a>.<br>
+          p#end-message(hidden) <br>You've reached the end of this batch! 
+            //Download the full list of terms <a href = "">here</a>.<br>
     script(src='../../bower_components/jquery/dist/jquery.min.js')
     script(src='../../bower_components/d3/d3.min.js')
     script(src='../../dist/china-min.js')
