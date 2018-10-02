@@ -53,6 +53,13 @@ function updatePosts(){
     //Update trends
     displayTrends(data.trends.slice(0, 10)); //Show the first ten trends only
 
+    //Update graphs
+    $("#urls-monitored").html(data.sourceUrls.length);
+    $("#total-posts-collected").html(data.stats.total.total);
+    $("#potentially-censored").html(data.stats.total.censored);
+    drawPie([data.stats.mostRecent.visible, data.stats.mostRecent.censored], "recent-pie", "Recent Posts");
+    drawPie([data.stats.total.visible, data.stats.total.censored], "all-pie", "All Collected Posts");
+
     //Remove the loading icon
     $("#loading").hide();
 

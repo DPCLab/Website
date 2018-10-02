@@ -6,14 +6,12 @@ function formatPercent(dec){
   return "" + (dec * 100).toFixed(2) + "%";
 }
 
-var pieCharts = d3.selectAll(".pie").each(function(){
-  var responses = this.dataset.responses.split(","),
-      labels = ["Visible", "Potentially Censored"],
-      colors = ["#ffffff", "#6c5ce7"],
+function drawPie(responses, id, name){
+  var labels = ["Visible", "Potentially Censored"],
+      colors = ["#6c5ce7", "#ffffff"],
       radius = 80,
       width = radius * 2,
-      height = width,
-      name = this.dataset.name;
+      height = width;
 
   var total = 0;
   var piedata = responses.map(function(d, i){
@@ -34,16 +32,14 @@ var pieCharts = d3.selectAll(".pie").each(function(){
     .outerRadius(radius)
     .innerRadius(40);
 
-  var tooltip = d3.select(this).select(".tooltip"),
+  var tooltip = d3.select("#" + id).select(".tooltip"),
       tooltipText,
       mouse;
 
-  var currentElement = this;
-
-  d3.select(this).style("width", width);
+  d3.select("#" + id).style("width", width);
 
   //Add pieChart
-  var myChart = d3.select(this).append("svg")
+  var myChart = d3.select("#" + id).append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
@@ -60,20 +56,20 @@ var pieCharts = d3.selectAll(".pie").each(function(){
           tooltip.classed("hidden", false).html(tooltipText);
         })
         .on("mousemove", function(d){
-          mouse = d3.mouse(currentElement);
+          mouse = d3.mouse(d3.select("#" + id).node());
 
           tooltip.style("left", mouse[0] - Math.round(tooltip.node().offsetWidth / 2) + "px")
             .style("top", mouse[1] - Math.round(tooltip.node().offsetHeight) - 12 + "px");
 
-          d3.select(this).style("fill", d3.rgb(d3.color(d.data.color).brighter(0.5)));
+          d3.select("#" + id).style("fill", d3.rgb(d3.color(d.data.color).brighter(0.5)));
         })
         .on("mouseout", function(d){
           tooltip.classed("hidden", true);
-          d3.select(this).style("fill", d.color);
+          d3.select("#" + id).style("fill", d.color);
         });
 
   //Add labels underneath pie chart
-  var pieLabel = d3.select(this).append("div")
+  var pieLabel = d3.select("#" + id).append("div")
     .attr("class", "pie-label")
     .style("width", width + "px");
 
@@ -84,4 +80,4 @@ var pieCharts = d3.selectAll(".pie").each(function(){
       .html(function(d, i){
         return "<div class = 'bubble' style = 'background:" + d.color + "'></div>" + d.label;
       }).append("br");
-});
+}
