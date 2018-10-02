@@ -5,6 +5,10 @@ function getTimeDelta(timeStr){ //Gets time between now and a given time in minu
   return (minutes < 60 ? minutes + " minutes": Math.round(minutes / 60) + " hours") + " ago";
 }
 
+// function cleanUpTrendString(trendStr){ //
+//
+// }
+
 function displayPosts(posts, lastSeen){
   d3.select("#posts").selectAll("li")
     .data(posts)
@@ -21,7 +25,7 @@ function displayTrends(trends){
     .enter()
     .append("li")
     .html(function(d){
-      return "<span>" + d.term + "</span> (" + d.meaning + ")";
+      return  d.term + "<span>(" + d.meaning + ")</span>";
     });
 }
 
@@ -35,10 +39,14 @@ function updatePosts(){
     displayPosts(data.posts, data.lastUpdated);
 
     //Update trends
-    displayTrends(data.trends);
+    displayTrends(data.trends.slice(0, 10)); //Show the first ten trends only
 
     //Remove the loading icon
     $("#loading").hide();
+
+    //Show both divs
+    $("#sidebar").css("display", "block");
+    $("#post-column").css("display", "block");
   });
 }
 

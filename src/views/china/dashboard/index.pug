@@ -16,19 +16,20 @@ html(lang='en')
       a(href = "../../") 
         img#icon(src = "../../assets/graphics/icon/icon_transparent.png")
     #body
-      h1 Recently Censored Posts 
+      h1 Censorship Dashboard
       p A real-time feed of Weibo posts which have been censored by the Chinese Communist Party. Fully <a href = "https://github.com/DPCLab/WeiboScrape" target = "_blank">open-source</a> and <a href = "" target = "_blank">downloadable</a>.
+      br
       p#loading(hidden)
         i.fas.fa-spinner.fa-spin 
         strong &nbsp;&nbsp;Updating posts .... 
       br
       .columns
-        #sidebar.column.is-one-third.is-one-quarter-widescreen
-          h2 Trending Topics
+        #sidebar.column.is-4(style = "display:none")
+          h2 Controversial Topics
           p Keywords which are similar amongst the most recently censored posts. Download the full list <a href = "">here</a>.
           ul#trends
-        #post-column.column.is-two-thirds.is-three-quarters-widescreen
-          ol#posts 
+        #post-column.column.is-8(style = "display:none")
+          ol#posts
     script(src='../../bower_components/jquery/dist/jquery.min.js')
     script(src='../../bower_components/d3/d3.min.js')
     script(src='../../dist/china-min.js')

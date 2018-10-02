@@ -3,7 +3,7 @@ html, body{
 }
 
 header{
-  padding: 15px;
+  padding: 15px calc(15% + 12px);
   height: 80px;
   background: #C33764;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
@@ -19,7 +19,7 @@ header{
 
 #body{
   padding: 20px;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   a{
     font-weight: normal;
@@ -49,14 +49,16 @@ header{
     font-size: 1.2em;
     list-style-type: disc;
     li{
-
+      color: $accent;
+      span{
+        color: gray;
+        font-size: 0.7em;
+        display: block;
+      }
     }
   }
   overflow: hidden;
   height: 1%;
-  span{
-    color: $accent;
-  }
 }
 
 #post-column{
@@ -104,5 +106,9 @@ header{
 @media screen and (max-width: 600px){
   #body{
     width: 100%;
+  }
+
+  header{
+    padding: 15px;
   }
 }
