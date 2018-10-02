@@ -49,6 +49,9 @@ gulp.task('compress', function() {
   gulp.src(["src/JS/china.js"])
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));
+  gulp.src(["src/JS/piechart.js"])
+    .pipe(minify({}))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('webserver', function() {

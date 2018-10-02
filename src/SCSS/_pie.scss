@@ -1,0 +1,90 @@
+$pie-width: 160px;
+
+.tooltip{
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  z-index: 50;
+  white-space: nowrap;
+
+  &:after, &:before {
+  	top: 100%;
+  	left: 50%;
+  	border: solid transparent;
+  	content: " ";
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+  }
+
+  &:after {
+  	border-color: rgba(255, 255, 255, 0);
+  	border-top-color: #ffffff;
+  	border-width: 10px;
+  	margin-left: -10px;
+  }
+  &:before {
+  	border-color: rgba(245, 0, 0, 0);
+  	border-top-color: $gray;
+  	border-width: 11px;
+  	margin-left: -11px;
+  }
+
+  border: 1px solid $gray;
+  background: white;
+  padding: 5px;
+}
+
+.bubble{
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  display: inline-block;
+  border: 1px solid gray;
+}
+
+.hidden{
+  display: none;
+}
+
+.pie{
+  margin: 20px 0 0;
+  position: relative;
+  text-align: center;
+  .tooltip{
+    transition: none;
+  }
+
+  svg{
+    path{
+      transition: background-color .2s ease;
+      stroke: $gray;
+      stroke-width: 2;
+    }
+  }
+}
+
+.pie-label{
+  margin: 5px auto;
+  text-align: left;
+  font-size: 14px;
+  h3{
+    font-size: 18px;
+  }
+  width: $pie-width;
+}
+
+.pie-center{
+  width: 100%;
+  text-align: center;
+
+  .pie{
+    display: inline-block;
+    margin-left: 10px;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}
