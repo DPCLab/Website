@@ -9,14 +9,25 @@ function getTimeDelta(timeStr){ //Gets time between now and a given time in minu
 //
 // }
 
+var currentI = 0;
+var rangeI;
 function displayPosts(posts, lastSeen){
-  d3.select("#posts").selectAll("li")
-    .data(posts)
-    .enter()
-    .append("li")
-    .html(function(d){
-      return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "<br>";
-    });
+  var array_of_post_arrays = [];
+  var SPLIT_LENGTH = 10;
+  rangeI = posts.length / SPLIT_LENGTH;
+  for(var i = 0; i < rangeI; i++){
+    d3.select("#posts")
+      .append("div")
+      .attr("id", "container-" + i)
+      .style("display", i == 0 ? "block" : "none")
+      .selectAll("li")
+      .data(posts.slice(i * SPLIT_LENGTH, Math.min(i * SPLIT_LENGTH + SPLIT_LENGTH, posts.length)))
+      .enter()
+      .append("li")
+      .html(function(d){
+        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "<br>";
+      });
+  }
 }
 
 function displayTrends(trends){
@@ -29,6 +40,7 @@ function displayTrends(trends){
     });
 }
 
+var postsUpdated = false;
 function updatePosts(){
   //Add the loading icon
   $("#loading").show();
@@ -47,9 +59,22 @@ function updatePosts(){
     //Show both divs
     $("#sidebar").css("display", "block");
     $("#post-column").css("display", "block");
+
+    postsUpdated = true;
   });
 }
 
 $(document).ready(function(){
   updatePosts();
+});
+
+//Autoscrolling behavior
+var loading = false;
+$(window).scroll(function() {
+  if (postsUpdated && !loading && ($(window).scrollTop() >= $(document).height() - $(window).height())) {
+    loading = true;
+    if(currentI < rangeI) $("#container-" + (++currentI)).css("display", "block");
+    else $("#end-message").show();
+    loading = false;
+  }
 });
