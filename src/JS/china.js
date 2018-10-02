@@ -56,9 +56,10 @@ function updatePosts(){
     //Remove the loading icon
     $("#loading").hide();
 
-    //Show both divs
+    //Show all divs
     $("#sidebar").css("display", "block");
     $("#post-column").css("display", "block");
+    $("#graphs").css("display", "flex");
 
     postsUpdated = true;
   });

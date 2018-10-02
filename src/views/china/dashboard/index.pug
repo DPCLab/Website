@@ -18,11 +18,12 @@ html(lang='en')
     #body
       h1 Weibo Censorship Dashboard
       p A real-time feed of Weibo posts which have been censored by the Chinese Communist Party. Fully <a href = "https://github.com/DPCLab/WeiboScrape" target = "_blank">open-source</a> and <a href = "https://cs.dpccdn.net/v1/download_recent" target = "_blank">downloadable</a>.
+      hr
       p#loading(hidden)
         br
         i.fas.fa-spinner.fa-spin 
         strong &nbsp;&nbsp;Updating posts .... 
-      #graphs.columns
+      #graphs.columns(style = "display:none")
         #at-a-glance.column.is-4
           .text
             //span AT A GLANCE
@@ -36,9 +37,9 @@ html(lang='en')
           .pie(data-responses = "3,100" data-name = "Recent Posts")
             .tooltip.hidden
         .column.is-4
-          .pie(data-responses = "10,50" data-name = "All Posts")
+          .pie(data-responses = "10,50" data-name = "All Collected Posts")
             .tooltip.hidden
-      hr
+      hr 
       .columns 
         .column.is-4.explanation
           h2 Significant Patterns
