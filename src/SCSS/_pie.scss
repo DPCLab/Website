@@ -75,16 +75,3 @@ $pie-width: 160px;
   }
   width: $pie-width;
 }
-
-.pie-center{
-  width: 100%;
-  text-align: center;
-
-  .pie{
-    display: inline-block;
-    margin-left: 10px;
-    &:first-child{
-      margin-left: 0;
-    }
-  }
-}

@@ -35,8 +35,8 @@ html(lang='en')
         br
         i.fas.fa-spinner.fa-spin 
         strong &nbsp;&nbsp;Updating posts .... 
-      #graphs.columns(style = "display:none")
-        #at-a-glance.column
+      #graphs.columns
+        #at-a-glance.column.is-4-desktop(style = "display:none")
           .text
             //span AT A GLANCE
             h2#total-posts-collected 
@@ -45,10 +45,10 @@ html(lang='en')
             p POTENTIALLY CENSORED POSTS
             h2#urls-monitored  
             p SOURCE URLS MONITORED
-        .column
+        .column.is-4-desktop
           #recent-pie.pie
             .tooltip.hidden
-        .column
+        .column.is-4-desktop
           #all-pie.pie
             .tooltip.hidden
       hr 

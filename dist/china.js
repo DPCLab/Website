@@ -70,7 +70,8 @@ function updatePosts(){
     //Show all divs
     $("#sidebar").css("display", "block");
     $("#post-column").css("display", "block");
-    $("#graphs").css("display", "flex");
+    $("#at-a-glance").css("display", "block");
+    //$("#graphs").css("display", "flex");
 
     postsUpdated = true;
   });
