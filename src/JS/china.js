@@ -50,8 +50,6 @@ function updatePosts(){
     d3.select("#posts").selectAll("*").remove(); //Get rid of existing children
     displayPosts(data.posts, data.lastUpdated);
 
-    console.log(data);
-
     //Update trends
     displayTrends(data.trends.slice(0, 10)); //Show the first ten trends only
 
@@ -66,6 +64,7 @@ function updatePosts(){
   });
 }
 
+//Initialize
 $(document).ready(function(){
   updatePosts();
 });
