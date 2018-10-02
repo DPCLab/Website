@@ -25,7 +25,7 @@ function displayPosts(posts, lastSeen){
       .enter()
       .append("li")
       .html(function(d){
-        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><span>LAST SEEN:</span> " + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "<br>";
+        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h2>" + ("" + d.uid).substring(0, 5) + "*****</h2><br><p class = 'text'>" + d.text + "</p><br><div class = 'level'><div class = 'level-left'><span>LAST SEEN:</span>&nbsp;" + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "</div><div clas = 'level-right'><a class = 'ext-link' href = '" + d.link + "' target = '_blank'>SEE ORIGINAL&nbsp;&nbsp;<i class = 'fas fa-external-link-alt'></i></a></div></div>";
       });
   }
 }
@@ -49,6 +49,8 @@ function updatePosts(){
     //Display Posts
     d3.select("#posts").selectAll("*").remove(); //Get rid of existing children
     displayPosts(data.posts, data.lastUpdated);
+
+    console.log(data);
 
     //Update trends
     displayTrends(data.trends.slice(0, 10)); //Show the first ten trends only
