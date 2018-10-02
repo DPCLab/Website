@@ -40,6 +40,10 @@ function displayTrends(trends){
     });
 }
 
+function convertToCommas(num){
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
 var postsUpdated = false;
 function updatePosts(){
   //Add the loading icon
@@ -54,9 +58,9 @@ function updatePosts(){
     displayTrends(data.trends.slice(0, 10)); //Show the first ten trends only
 
     //Update graphs
-    $("#urls-monitored").html(data.sourceUrls.length);
-    $("#total-posts-collected").html(data.stats.total.total);
-    $("#potentially-censored").html(data.stats.total.censored);
+    $("#urls-monitored").html(convertToCommas(data.sourceUrls.length));
+    $("#total-posts-collected").html(convertToCommas(data.stats.total.total));
+    $("#potentially-censored").html(convertToCommas(data.stats.total.censored));
     drawPie([data.stats.mostRecent.visible, data.stats.mostRecent.censored], "recent-pie", "Recent Posts");
     drawPie([data.stats.total.visible, data.stats.total.censored], "all-pie", "All Collected Posts");
 
