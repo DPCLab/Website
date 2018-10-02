@@ -26,6 +26,7 @@ header{
     text-decoration: underline;
     text-decoration-color: $accent;
     color: inherit;
+    font-size: 1em;
     &:hover{
       color: $accent;
     }
