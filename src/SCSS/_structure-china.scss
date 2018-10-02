@@ -38,6 +38,8 @@ header{
 #sidebar{
   padding: 0;
   margin: 0;
+  position: sticky;
+  top: 12px;
 
   div{
     border: 2px solid $gray;
