@@ -25,9 +25,11 @@ html(lang='en')
       br
       .columns
         #sidebar.column.is-4(style = "display:none")
-          h2 Controversial Topics
-          p Keywords which are similar amongst the most recently censored posts. Download the full list <a href = "">here</a>.
-          ul#trends
+          #topics
+            h2 Controversial Topics
+            ul#trends
+          #info
+            p Keywords which are similar amongst the most recently censored posts. Download the full list <a href = "">here</a>.
         #post-column.column.is-8(style = "display:none")
           ol#posts
     script(src='../../bower_components/jquery/dist/jquery.min.js')
