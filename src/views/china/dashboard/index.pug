@@ -17,7 +17,7 @@ html(lang='en')
         img#icon(src = "../../assets/graphics/icon/icon_transparent.png")
     #body
       h1 Censorship Dashboard
-      p A real-time feed of Weibo posts which have been censored by the Chinese Communist Party. Fully <a href = "https://github.com/DPCLab/WeiboScrape" target = "_blank">open-source</a> and <a href = "" target = "_blank">downloadable</a>.
+      p A real-time feed of Weibo posts which have been censored by the Chinese Communist Party. Fully <a href = "https://github.com/DPCLab/WeiboScrape" target = "_blank">open-source</a> and <a href = "https://cs.dpccdn.net/v1/download_recent" target = "_blank">downloadable</a>.
       br
       p#loading(hidden)
         i.fas.fa-spinner.fa-spin 
@@ -41,8 +41,7 @@ html(lang='en')
           ul#trends      
         #post-column.column.is-8(style = "display:none")
           ol#posts
-          p#end-message(hidden) <br>You've reached the end of this batch! 
-            //Download the full list of terms <a href = "">here</a>.<br>
+          p#end-message(hidden) <br>You've reached the end of this batch! Download the full list of terms <a href = "https://cs.dpccdn.net/v1/download_recent">here</a>.<br>
     script(src='../../bower_components/jquery/dist/jquery.min.js')
     script(src='../../bower_components/d3/d3.min.js')
     script(src='../../dist/china-min.js')
