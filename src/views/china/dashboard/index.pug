@@ -13,10 +13,20 @@ html(lang='en')
     link(href='../../dist/CSS/china.css', rel='stylesheet', type='text/css')
   body
     header
-      a(href = "../../") 
-        img#icon(src = "../../assets/graphics/icon/icon_transparent.png")
+      .level
+        .level-left
+          .level-item
+            a(href = "../../") 
+              img#icon(src = "../../assets/graphics/icon/icon_transparent.png")
+        .level-right
+          .level-item
+            span.is-pulled-right.is-hidden-mobile.has-text-white An Independent Project at Phillips Academy Andover
     #body
-      h1 Weibo Censorship Dashboard
+      .has-text-centered
+        br
+        h1.is-size-2 Weibo Censorship Dashboard
+        span.heading.is-size-6 Miles McCain and Jeffrey Shen
+        br
       br
       .columns
         .column
@@ -38,7 +48,6 @@ html(lang='en')
       #graphs.columns
         #at-a-glance.column.is-4-desktop(style = "display:none")
           .text
-            //span AT A GLANCE
             h2#total-posts-collected 
             p TOTAL POSTS COLLECTED
             h2#potentially-censored 
