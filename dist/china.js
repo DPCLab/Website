@@ -85,7 +85,7 @@ $(document).ready(function(){
 //Autoscrolling behavior
 var loading = false;
 $(window).scroll(function() {
-  if (postsUpdated && !loading && ($(window).scrollTop() >= $(document).height() - $(window).height())) {
+  if (postsUpdated && !loading && ($(window).scrollTop() >= $(document).height() - $(window).height() - 100)) {
     loading = true;
     if(currentI < rangeI) $("#container-" + (++currentI)).css("display", "block");
     else $("#end-message").show();
