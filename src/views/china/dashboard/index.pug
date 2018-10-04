@@ -6,27 +6,37 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name = "description" content = "A real-time dashboard of censored posts and keywords on Weibo.")
     meta(name = "author" content = "Jeffrey Shen, Miles McCain")
-    title Censorship Dashboard | Digital Propaganda &amp; Censorship
+    title Weibo Censorship Dashboard | Digital Propaganda &amp; Censorship
     link(rel = "icon" type = "image/png" sizes = "32x32" href = "../../assets/graphics/icon/favicon.png")
     link(href='../../bower_components/bulma/css/bulma.min.css' rel='stylesheet' type='text/css')
     link(href='../../bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css' rel='stylesheet' type='text/css')
     link(href='../../dist/CSS/china.css', rel='stylesheet', type='text/css')
   body
     header
-      a(href = "../../") 
-        img#icon(src = "../../assets/graphics/icon/icon_transparent.png")
+      .level
+        .level-left
+          .level-item
+            a(href = "../../") 
+              img#icon(src = "../../assets/graphics/icon/icon_transparent.png")
+        .level-right
+          .level-item
+            span.is-pulled-right.is-hidden-mobile.has-text-white An Independent Project at Phillips Academy
     #body
-      h1 Weibo Censorship Dashboard
+      .has-text-centered
+        br
+        h1.is-size-2 Weibo Censorship Dashboard
+        span.heading.is-size-6 Miles McCain and Jeffrey Shen
+        br
       br
       .columns
         .column
-          p Scholars <a href = "https://www.jstor.org/stable/43654017" target = "_blank">speculate</a> that approximately 13% of Weibo posts are censored, however no reliable and open source tool to track these censored posts currently exists. This dashboard provides an almost real-time feed of censorship on Weibo and is completely open-source and transparent.
+          p Approximately 13% of Weibo posts are <a href = "https://www.jstor.org/stable/43654017" target = "_blank">censored</a>, however no reliable and open source tool to track these censored posts currently exists. This dashboard provides an almost real-time feed of censorship on Weibo and is completely open-source and transparent.
             br
             br
-            | For information on our methodology and Chinese Internet censorship, please see our <a href = "" target = "_blank">paper</a>. The source for this website is available freely online on <a href = "https://github.com/DPCLab/" target = "_blank">GitHub</a>. Download the most recent data <a href = "https://cs.dpccdn.net/v1/download_recent" target = "_blank">here</a>.
+            | For information on our methodology and Chinese Internet censorship, please see our <a href = "" target = "_blank">paper</a>. The source for this website is available freely online on <a href = "https://github.com/DPCLab/" target = "_blank">GitHub</a>. Download the most recent data with date ranges <a href = "https://cs.dpccdn.net/v1/download_recent" target = "_blank">here</a>.
         .column.disclaimer
           ul
-            li The posts included in our data-set are not a representative sample of Weibo posts.
+            li The posts included in our data-set are not a representative sample of Weibo posts. Our data collection began on September 28, 2018.
             li All translations are provided by Google Translate.
             li Not all posts listed in this dashboard were necessarily censored by the government; some may have been deleted by the user who originally posted the content, and others may have been only censored temporarily.
             li Post removal is only one of many ways that Weibo and the Chinese government moderates content online. This dashboard provides a focused—albeit limited—view of Weibo censorship, and, by extension, Chinese censorship more broadly.
@@ -38,7 +48,6 @@ html(lang='en')
       #graphs.columns
         #at-a-glance.column.is-4-desktop(style = "display:none")
           .text
-            //span AT A GLANCE
             h2#total-posts-collected 
             p TOTAL POSTS COLLECTED
             h2#potentially-censored 
