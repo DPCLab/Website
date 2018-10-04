@@ -135,10 +135,14 @@ header{
     h3, .profile-photo{
       display: inline-block;
     }
-    .ext-link{
+    .translate, .ext-link{
       color: $accent;
       font-size: 1em;
       text-decoration: none;
+      padding-top: 0;
+    }
+    .translate{
+      font-size: 1.5em;
     }
   }
 }
