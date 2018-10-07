@@ -25,7 +25,7 @@ function displayPosts(posts, lastSeen){
       .enter()
       .append("li")
       .html(function(d){
-        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h3>" + ("" + d.uid).substring(0, 5) + "*****</h3><a title = 'Translate Post' target = '_blank' href = 'https://translate.google.com/#zh-CN/en/" + d.text + "' class = 'translate is-pulled-right'><i class = 'fas fa-language'></i></a><br><p class = 'text'>" + d.text + "</p><br><div class = 'level'><div class = 'level-left'><span>LAST SEEN:</span>&nbsp;" + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "</div><div class = 'level-right'><a class = 'ext-link' href = '" + d.link + "' target = '_blank'><i class = 'fas fa-external-link-alt'></i></a></div></div>";
+        return "<img class = 'profile-photo' src = '../../assets/graphics/profile-photo.png'><h3>" + ("" + d.uid).substring(0, 5) + "*****</h3><a title = 'Translate Post' target = '_blank' href = 'https://translate.google.com/#zh-CN/en/" + d.text + "' class = 'translate is-pulled-right'><i class = 'fas fa-language'></i></a><br><p class = 'text'>" + (d.text == null ? "[This post contained an image]" : d.text) + "</p><br><div class = 'level'><div class = 'level-left'><span>LAST SEEN:</span>&nbsp;" + getTimeDelta(d.retrieved) + " (" + d.retrieved + ")" + "</div><div class = 'level-right'><a class = 'ext-link' href = '" + d.link + "' target = '_blank'><i class = 'fas fa-external-link-alt'></i></a></div></div>";
       });
   }
 }
