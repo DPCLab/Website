@@ -1,0 +1,32 @@
+@import "theme";
+
+#right-text{
+  padding: 100px 75px;
+  span{
+    color: $accent;
+    margin: 0;
+  }
+  h1{
+    font-size: 4em;
+    line-height: 1.2em;
+    margin-left: -4px;
+    margin-bottom: 10px;
+  }
+  .button{
+    transition: 0.2s;
+    &:hover{
+      color: $accent;
+      border-color: $accent;
+    }
+  }
+  .filled{
+    background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1D2671, #C33764);
+    color: white;
+    border-color: white;
+    &:hover{
+      border-color: $gray;
+      color: $gray;
+    }
+  }
+}

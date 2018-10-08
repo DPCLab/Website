@@ -9,25 +9,39 @@ html{
 
 .column{
   height: 100vh;
+  position: relative;
+}
+
+nav, .right{
+  position: absolute;
+  bottom: 12px;
+  text-align: right;
+  a{
+    margin-right: 15px;
+  }
+}
+.right{
+  right: 12px;
+}
+nav{
+  left: 12px;
+}
+
+.background{
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#credit{
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: white;
 }
 
 #left{
   text-align: center;
-  position: relative;
-  nav, .right{
-    position: absolute;
-    bottom: 12px;
-    text-align: right;
-    a{
-      margin-right: 15px;
-    }
-  }
-  .right{
-    right: 12px;
-  }
-  nav{
-    left: 12px;
-  }
 
   center{
     width: 80%;
@@ -40,20 +54,5 @@ html{
       width: 100%;
       position: relative;
     }
-  }
-}
-
-#right{
-  background-image: url("../../assets/graphics/cover.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-
-  #credit{
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    color: white;
   }
 }

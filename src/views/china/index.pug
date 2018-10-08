@@ -11,8 +11,29 @@ html(lang='en')
     link(href='../bower_components/bulma/css/bulma.min.css' rel='stylesheet' type='text/css')
     link(href='../bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css' rel='stylesheet' type='text/css')
     link(href='../dist/CSS/main.css', rel='stylesheet', type='text/css')
+    link(href='../dist/CSS/country-page.css', rel='stylesheet', type='text/css')
   body
-
+    .columns
+      .column.is-one-third.is-hidden-mobile.background(style = "background-image:url('../assets/graphics/cover.jpg')")
+        a#credit(href = "https://www.npr.org/2013/01/29/170469038/in-china-beware-a-camera-may-be-watching-you") Image courtesy of NPR
+      .column.is-two-thirds#right-text
+        span.heading.is-size-6 DIGITAL PROPAGANDA + CENSORSHIP
+        h1 China
+        p Velit exercitation pariatur ullamco occaecat adipisicing sint incididunt deserunt magna consectetur eu deserunt nulla. Anim ipsum esse fugiat sint in Lorem nulla labore minim aliqua cillum do tempor. Nisi eiusmod laborum minim do est esse adipisicing occaecat. Voluptate veniam officia quis deserunt dolor dolor id excepteur sit est laborum eiusmod. Lorem veniam ipsum eiusmod elit dolor ad labore dolore.
+          i China is one of two units on digital propaganda and censorship. The other is on Russian internet "trolling" in the United States, which you can check out <a href = "/russia">here</a>.
+        br
+        p.heading.is-size-6 BY JEFFREY SHEN AND MILES MCCAIN
+        hr
+        a.button.is-medium.filled(href = "./dashboard" style = "margin-right: 5px;") SEE PROJECT 
+        a.button.is-medium(href = "") RESEARCH PAPER
+        nav 
+          a#github(href = "https://github.com/DPCLab" target = "_blank")
+            i.fab.fa-github
+        .right
+          a(href = "/") Home
+          a(href = "") Blog
+          a(href = "/china") China
+          a(href = "/russia") Russia  
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../dist/script-min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
