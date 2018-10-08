@@ -1,7 +1,15 @@
 @import "theme";
 
 #right-text{
+  padding: 0;
+}
+
+.text{
+  // margin-bottom: 20px;
   padding: 100px 75px;
+  height: calc(100% - 40px);
+  overflow-y: scroll;
+  box-sizing: border-box;
   span{
     color: $accent;
     margin: 0;
