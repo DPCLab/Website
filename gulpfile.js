@@ -21,19 +21,15 @@ gulp.task('views', function buildHTML() {
     .pipe(pug())
     .pipe(gulp.dest('.'));
 
-  var china = gulp.src(['src/views/china/*.pug'])
+  var china = gulp.src(['src/views/china/**/*.pug'])
     .pipe(pug())
     .pipe(gulp.dest('./china'));
 
-  var china_sub = gulp.src(['src/views/china/dashboard/*.pug'])
+  var russia = gulp.src(['src/views/russia/**/*.pug'])
     .pipe(pug())
-    .pipe(gulp.dest('./china/dashboard'));
+    .pipe(gulp.dest('./russia/'));
 
-  var russia = gulp.src(['src/views/russia/*.pug'])
-    .pipe(pug())
-    .pipe(gulp.dest('./russia'));
-
-  return es.concat(normal, china, china_sub, russia);
+  return es.concat(normal, china, russia);
 });
 
 gulp.task('sass', function () {

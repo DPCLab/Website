@@ -1,0 +1,45 @@
+html, body{
+  height: 100vh;
+}
+
+header{
+  padding: 15px calc(15% + 12px);
+  height: 80px;
+  background: #C33764;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#body{
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+  a{
+    font-weight: normal;
+    text-decoration: underline;
+    text-decoration-color: $accent;
+    color: inherit;
+    font-size: 1em;
+    &:hover{
+      color: $accent;
+    }
+  }
+  h1{
+    margin: 0;
+    line-height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px){
+}
+
+@media screen and (max-width: 600px){
+  #body{
+    width: 100%;
+  }
+
+  header{
+    padding: 15px;
+  }
+}
