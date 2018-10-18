@@ -31,6 +31,31 @@ header{
   }
 }
 
+.img{
+  .caption{
+    font-size: 16px;
+  }
+  .credit{
+    color: gray;
+    font-size: 14px;
+  }
+}
+
+.half{
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.float-left{
+  float: left;
+  padding: 0 20px 0 0;
+}
+
+.float-right{
+  float: right;
+  padding: 0 0 0 20px;
+}
+
 @media screen and (max-width: 600px){
   #body{
     width: 100%;

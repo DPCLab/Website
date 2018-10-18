@@ -1,2 +1,16 @@
+//Theme
+.date{
+  color: $accent;
+}
+
+//Structure
+#body{
+  padding-bottom: 80px;
+  p{
+    text-align: justify;
+  }
+}
+
+//Mobile
 @media screen and (max-width: 768px){
 }
