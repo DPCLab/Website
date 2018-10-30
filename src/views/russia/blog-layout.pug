@@ -18,18 +18,16 @@ html(lang='en')
     #body
       .has-text-centered
         br
-        h1.is-size-2 #{title}
-        span.heading.is-size-6 Miles McCain and Jeffrey Shen
+        h1.is-size-2.title #{title}
+        span.subtitle.is-size-4 #{subtitle}
+        br
         br
       if featured_image_url
-        +img_full(featured_image_url, featured_image_alt, featured_image_caption, featured_image_credit)    
-      span.heading.is-size-6.date #{date}
-      hr
+        +img_full(featured_image_url, featured_image_alt, featured_image_caption, featured_image_credit) 
+      span.byline <a href = "https://rmrm.io">Miles McCain</a> and <a href = "http://jeffreyshen.com">Jeffrey Shen</a>
+      span.heading.date #{date}
+      hr  
       block body
-      br
-      br
-      p 
-        i Miles McCain and Jeffrey Shen are current high-school seniors at Phillips Academy.
     script(src='/bower_components/jquery/dist/jquery.min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
     script(type = "text/javascript").

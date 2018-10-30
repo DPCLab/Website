@@ -1,13 +1,36 @@
 //Theme
 .date{
   color: $accent;
+  font-size: 14px;
 }
+
+.byline{
+  font-size: 18px;
+}
+
+$media-offset: 18%;
 
 //Structure
 #body{
   padding-bottom: 80px;
+  width: 34em;
+  font-size: 18px;
+  .title{
+    margin-bottom: 5px;
+  }
+  .full, .has-text-centered{
+    width: 100% + $media-offset;
+    margin-left: -0.5 * $media-offset;
+  }
   p{
-    text-align: justify;
+    font-family: "IBM_Plex_Serif";
+  }
+  .epilogue{
+    p {
+      color: gray;
+      font-size: 16px;
+      font-family: "IBM_Plex_Sans";
+    }
   }
 }
 

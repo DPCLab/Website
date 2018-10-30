@@ -1,18 +1,18 @@
 mixin img_full(src, alt, caption, credit)
   .img.full
     img(src = src alt = alt)
-    p.caption= caption
-    p.credit= credit
+    span.caption= caption 
+      span.credit= " Photo: " + credit
     br
 
 mixin img_half_left(src, alt, caption, credit)
   .img.half.float-left
     img(src = src alt = alt)
-    p.caption= caption
-    p.credit= credit
+    span.caption= caption 
+      span.credit= " Photo: " + credit
     
 mixin img_half_right(src, alt, caption, credit)
   .img.half.float-right
     img(src = src alt = alt)
-    p.caption= caption
-    p.credit= credit
+    span.caption= caption 
+      span.credit= " Photo: " + credit

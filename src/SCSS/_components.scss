@@ -14,6 +14,7 @@ header{
   padding: 20px;
   width: 70%;
   margin: 0 auto;
+
   a{
     font-weight: normal;
     text-decoration: underline;
@@ -34,17 +35,27 @@ header{
 .img{
   .caption{
     font-size: 16px;
+    display: block;
+    font-family: "IBM_Plex_Sans";
+    line-height: 1.2em;
   }
   .credit{
-    color: gray;
-    font-size: 14px;
+    color: #bababa;
+  }
+  padding-bottom: 12px;
+}
+
+.border{
+  img{
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
   }
 }
 
-.half{
-  width: 50%;
-  box-sizing: border-box;
-}
+// .half{
+//   width: 50%;
+//   box-sizing: border-box;
+// }
 
 .float-left{
   float: left;
@@ -52,8 +63,12 @@ header{
 }
 
 .float-right{
+  display: block;
+  margin-right: -25%;
+  padding: 0 0 25px 30px;
   float: right;
-  padding: 0 0 0 20px;
+  max-width: 50%;
+  width: auto;
 }
 
 @media screen and (max-width: 600px){
