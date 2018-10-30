@@ -5,6 +5,8 @@ var minify = require('gulp-minify');
 var webserver = require('gulp-webserver');
 var concat = require('gulp-concat');
 var es = require('event-stream');
+var data = require('gulp-data');
+var fs = require("fs");
 
 gulp.task('default', ['views', 'sass', 'compress', 'webserver'], function() {
   gulp.watch('src/SCSS/*.scss', ['sass']);
@@ -26,6 +28,7 @@ gulp.task('views', function buildHTML() {
     .pipe(gulp.dest('./china'));
 
   var russia = gulp.src(['src/views/russia/**/*.pug'])
+    .pipe(data(function (file){return {"read": fs.readFileSync};}))
     .pipe(pug())
     .pipe(gulp.dest('./russia/'));
 
