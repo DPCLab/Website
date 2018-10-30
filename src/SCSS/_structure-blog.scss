@@ -24,6 +24,9 @@ $media-offset: 18%;
   }
   p{
     font-family: "IBM_Plex_Serif";
+    a{
+      font-family: "IBM_Plex_Serif";
+    }
   }
   .epilogue{
     p {
@@ -35,5 +38,42 @@ $media-offset: 18%;
 }
 
 //Mobile
-@media screen and (max-width: 768px){
+@media screen and (max-width: 900px){
+  #body{
+    width: 95%;
+    .has-text-centered{
+      width: 100%;
+      margin: 0;
+    }
+    .full{
+      width: calc(100vw - 100%) + 100%;
+      margin-left: calc(100vw - 100%) / -2;
+      .caption{
+        width: 95vw;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+    .float-left, .float-right{
+      padding: 0 0 1.5rem 0;
+      float: none;
+      margin: 0 auto;
+    }
+    .bold_figure{
+      width: 35%;
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 1.5rem;
+    }
+    .img.half{
+      display: none;
+    }
+    .dummy{
+      display: block;
+      .img.half{
+        display: block !important;
+        max-width: 75%;
+      }
+    }
+  }
 }
