@@ -33,6 +33,16 @@ header{
   .subtitle{
     font-family: "IBM_Plex_Sans";
   }
+  .tag-a{
+    text-decoration: none;
+    .tag{
+      margin-bottom: 6px;
+      color: $accent;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: white;
+    }
+  }
 }
 
 .img{

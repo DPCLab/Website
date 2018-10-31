@@ -18,9 +18,8 @@ html(lang='en')
     -var data = JSON.parse(read("./src/views/russia/intro-to-russian-meddling/config.json"));
     if data.featured_image_url
       +img_full(data.featured_image_url, data.featured_image_alt, data.featured_image_caption, data.featured_image_credit) 
-    h1=data.title
-    h2=data.subtitle
-    p Miles McCain and Jeffrey Shen
+    h1
+      a=data.title
     p=data.date
     
     //- .columns
