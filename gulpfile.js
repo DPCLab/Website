@@ -7,6 +7,7 @@ var concat = require('gulp-concat');
 var es = require('event-stream');
 var data = require('gulp-data');
 var fs = require("fs");
+var path = require('path');
 
 gulp.task('default', ['views', 'sass', 'compress', 'webserver'], function() {
   gulp.watch('src/SCSS/*.scss', ['sass']);
@@ -27,8 +28,24 @@ gulp.task('views', function buildHTML() {
     .pipe(pug())
     .pipe(gulp.dest('./china'));
 
+  function getDirectories(){
+    source = "src/views/russia/";
+    return fs.readdirSync(source).map(function(name){
+      return path.join(source, name);
+    }).filter(function(source){
+      return fs.lstatSync(source).isDirectory();
+    }).map(function(name){
+      return name.replace(source, "");
+    });
+  }
+
   var russia = gulp.src(['src/views/russia/**/*.pug'])
-    .pipe(data(function (file){return {"read": fs.readFileSync};}))
+    .pipe(data(function (file){
+      return {
+        "read": fs.readFileSync,
+        "getDirectories": getDirectories
+      };
+    }))
     .pipe(pug())
     .pipe(gulp.dest('./russia/'));
 

@@ -1,8 +1,9 @@
 mixin img_full(src, alt, caption, credit)
   .img.full
     img(src = src alt = alt)
-    span.caption= caption 
-      span.credit!= " Photo: " + credit
+    span.caption= caption
+      if credit.length > 0
+        span.credit!= " Photo: " + credit
     br
 
 mixin img_half_left(src, alt, caption, credit)

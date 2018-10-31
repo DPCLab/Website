@@ -1,0 +1,16 @@
+.names{
+  color: $accent;
+  margin-top: 16px;
+}
+
+#body{
+  .post{
+    h1{
+      margin-bottom: 4px;
+      a{
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+  }
+}

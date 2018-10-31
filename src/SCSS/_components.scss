@@ -30,8 +30,18 @@ header{
     line-height: 2.5rem;
     margin-bottom: 1rem;
   }
+  .title{
+    margin-bottom: 5px;
+  }
   .subtitle{
     font-family: "IBM_Plex_Sans";
+  }
+  .epilogue{
+    p {
+      color: gray;
+      font-size: 16px;
+      font-family: "IBM_Plex_Sans";
+    }
   }
   .tag-a{
     text-decoration: none;
@@ -42,6 +52,10 @@ header{
       font-weight: bold;
       background-color: white;
     }
+  }
+  .tag-inline{
+    color: $accent;
+    font-size: 14px;
   }
 }
 

@@ -10,40 +10,39 @@ html(lang='en')
     link(rel = "icon" type = "image/png" sizes = "32x32" href = "../assets/graphics/icon/favicon.png")
     link(href='../bower_components/bulma/css/bulma.min.css' rel='stylesheet' type='text/css')
     link(href='../bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css' rel='stylesheet' type='text/css')
-    //- link(href='../dist/CSS/main.css', rel='stylesheet', type='text/css')
-    //- link(href='../dist/CSS/country-page.css', rel='stylesheet', type='text/css')
+    link(href='../dist/CSS/russia.css', rel='stylesheet', type='text/css')
   body
+    include ../components/header.pug  
     include ../components/components.pug  
     
-    -var data = JSON.parse(read("./src/views/russia/intro-to-russian-meddling/config.json"));
-    if data.featured_image_url
-      +img_full(data.featured_image_url, data.featured_image_alt, data.featured_image_caption, data.featured_image_credit) 
-    h1
-      a=data.title
-    p=data.date
-    
-    //- .columns
-    //-   .column.is-one-third.is-hidden-mobile.background(style = "background-image:url('../assets/graphics/cover.jpg')")
-    //-     a#credit(href = "https://www.npr.org/2013/01/29/170469038/in-china-beware-a-camera-may-be-watching-you") Image courtesy of NPR
-    //-   .column.is-two-thirds#right-text
-    //-     .text
-    //-       span.heading.is-size-6 DIGITAL PROPAGANDA + CENSORSHIP
-    //-       h1 China
-    //-       p Velit exercitation pariatur ullamco occaecat adipisicing sint incididunt deserunt magna consectetur eu deserunt nulla. Anim ipsum esse fugiat sint in Lorem nulla labore minim aliqua cillum do tempor. Nisi eiusmod laborum minim do est esse adipisicing occaecat. Voluptate veniam officia quis deserunt dolor dolor id excepteur sit est laborum eiusmod. Lorem veniam ipsum eiusmod elit dolor ad labore dolore.
-    //-         i China is one of two units on digital propaganda and censorship. The other is on Russian internet "trolling" in the United States, which you can check out <a href = "/russia">here</a>.
-    //-       br
-    //-       p.heading.is-size-6 BY JEFFREY SHEN AND MILES MCCAIN
-    //-       hr
-    //-       a.button.is-medium.filled(href = "./dashboard" style = "margin-right: 5px;") SEE PROJECT 
-    //-       a.button.is-medium(href = "") RESEARCH PAPER
-    //-     nav 
-    //-       a#github(href = "https://github.com/DPCLab" target = "_blank")
-    //-         i.fab.fa-github
-    //-     .right
-    //-       a(href = "/") Home
-    //-       a(href = "") Blog
-    //-       a(href = "/china") China
-    //-       a(href = "/russia") Russia  
+    #body
+      .has-text-centered
+        br
+        h1.is-size-2.title Russian Meddling
+        span.subtitle.is-size-4 A four-part series exploring Russian meddling on American social media.
+        span.heading.is-size-6.names Miles McCain and Jeffrey Shen
+        br
+      br
+      .columns
+        .column.is-12
+          each post in getDirectories()
+            .post
+              -var data = JSON.parse(read("./src/views/russia/" + post + "/config.json"));
+              .img.full
+                img(src = data.featured_image_url)
+              h1
+                a(href = "./" + post)=data.title
+              p.heading
+                span.tag-inline=data.tag
+                | &nbsp;•&nbsp;
+                span(style = "font-size:14px;") #{data.date}
+              p=data.description
+            hr 
+          .epilogue 
+            p Stay tuned—More blog posts and projects coming!
+        //- .column.is-4
+      br
+      br
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../dist/script-min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
