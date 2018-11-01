@@ -1,0 +1,18 @@
+extends ../blog-layout.pug
+block vars
+  -var data = JSON.parse(read("./src/views/russia/machine-learning-troll-detection/config.json"));
+  -var title = data.title
+  -var subtitle = data.subtitle
+  -var date = data.date
+  -var featured_image_url = data.featured_image_url
+  -var featured_image_alt  = data.featured_image_alt
+  -var featured_image_caption  = data.featured_image_caption
+  -var featured_image_credit = data.featured_image_credit
+  -var tag = data.tag
+
+block body 
+  include ../../components/ml-troll-detector.pug
+  +ml-troll-detector()
+  
+block scripts
+  script(src = "/dist/ml-troll-detector-min.js")
