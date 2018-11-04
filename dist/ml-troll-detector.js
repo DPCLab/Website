@@ -115,7 +115,7 @@ function analyzeTweet(localThis){
   tweet_text = $input.text();
   if(tweet_text.length > 0){
     $("#loading").fadeIn();
-    $.get("https://ru.dpccdn.net/analyze/" + encodeURI(tweet_text), function(data){
+    $.get("https://ru.dpccdn.net/analyze/" + encodeURIComponent(tweet_text.replace(/\//g, "")), function(data){
       //Add small donut chart
       drawPie(data.master);
 
