@@ -20,6 +20,7 @@ $media-offset: 18%;
     span{
       position: relative;
       display: inline-block;
+      border-radius: 3px;
     }
   }
 
@@ -56,6 +57,8 @@ $media-offset: 18%;
     background: white;
     z-index: 50;
 	  border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    border-top-left-radius: 1px;
     display: inline-block;
     white-space: nowrap;
     padding: 0 2px;
@@ -128,6 +131,15 @@ $media-offset: 18%;
       width: 95vw;
       margin: 0 auto;
       display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 720px){
+  .troll-detector{
+    .hover-box{
+      white-space: normal;
+      width: 120px;
     }
   }
 }

@@ -26,24 +26,31 @@ function check_characters(e){
   }
 }
 
-$input.on('keyup', function (e){ //If the user stops typing, start a countdown
-  check_characters(e);
-  if(isEnteredKey(e.which)) {
-    clearTimeout(typingTimer);
-    typingTimer = setTimeout(function(){
-      analyzeTweet();
-    }, 300);
-  }
-});
+// $input.on('keyup', function (e){ //If the user stops typing, start a countdown
+//   check_characters(e);
+//   if(isEnteredKey(e.which)) {
+//     clearTimeout(typingTimer);
+//     typingTimer = setTimeout(function(){
+//       analyzeTweet(e);
+//     }, 1000);
+//   }
+// });
 
-$input.on('keydown', function (e){ //If they go back to typing, end the countdown
+function onKeyDown(e){
   //Remove the spans from displaying color once typing, if the key pressed will actually result in entered text
   check_characters(e);
   if(isEnteredKey(e.which)) {
-    $input.children("span").css("background-color", "#ffffff");
     clearTimeout(typingTimer);
+    $("#loading").fadeIn();
+    $input.children("span").css("background-color", "#ffffff"); //Remove background highlighting
+
+    typingTimer = setTimeout(function(){
+      analyzeTweet(e);
+    }, 1000);
   }
-});
+}
+
+$input.on('keydown', onKeyDown);
 
 /*
   Analyze Tweets
@@ -86,27 +93,46 @@ function drawPie(responses){
         })
         .attr("stroke", "white")
         .attr("d", arc);
+
+  $("#troll-pie").removeClass("hidden");
 }
 
 //Returns html with highlights in the text
 function addHighlighting(tweet_text, tokenized){
-  highlighted_text = tweet_text;
-
+  var tokens = tweet_text.split(/([^A-Z0-9])/gi);
   var keys = Object.keys(tokenized);
-  for(var i = 0; i < keys.length; i++){
-    if(Math.abs(tokenized[keys[i]]) > 0.3){ //Only add highlighting to significant words
-      var regex = "("+keys[i]+")([^<]|$)";
-      highlighted_text = highlighted_text.replace(new RegExp(regex), "<span data-proba = '" + tokenized[keys[i]] + "' class = 'hover' style = 'background-color:" + colorSwatch[Math.floor((tokenized[keys[i]] + 1)*5)] + "50'>$1</span>$2");
+
+  var output = "";
+
+  for(var i = 0; i < tokens.length; i++){
+    if(keys.indexOf(tokens[i]) != -1){
+      output += "<span data-proba = '" + tokenized[tokens[i]] + "' class = 'hover' style = 'background-color:" + (Math.abs(tokenized[tokens[i]]) < 0.2 ? "#ffffff" : colorSwatch[Math.floor((tokenized[tokens[i]] + 1)*5)]) + "50'>" + tokens[i] + "</span>";
+    }
+    else{
+      output += tokens[i];
     }
   }
 
-  return highlighted_text;
+  // for(var i = 0; i < keys.length; i++){
+  //   if(Math.abs(tokenized[keys[i]]) > 0){ //Only add highlighting to significant words
+  //     var regex = "([^>]|^)("+keys[i]+")([^<]|$)";
+  //     highlighted_text = highlighted_text.replace(new RegExp(regex), "$1<span data-proba = '" + tokenized[keys[i]] + "' class = 'hover' style = 'background-color:" + colorSwatch[Math.floor((tokenized[keys[i]] + 1)*5)] + "50'>$2</span>$3");
+  //   }
+  // }
+
+  return output;
+}
+
+function getTokenDescriptor(proba){
+  if(proba > 0) return "More troll-like than organic";
+  else if(proba < 0) return "More organic than troll-like";
+  else return "No effect";
 }
 
 $(document).on('mouseover', '.hover', function(e){
   //Show
   var probability = "" + (parseFloat($(this).data("proba")) * 100).toFixed(2) + "%";
-  if($(this).has(".hover-box").length == 0) $(this).append("<div class = 'hover-box'><strong>" + (parseFloat($(this).data("proba")) > 0 ? "Leans Troll" : "Leans Non-Troll") + "</strong> (" + probability + ")</div>");
+  if($(this).has(".hover-box").length == 0) $(this).append("<div class = 'hover-box'><strong>" + getTokenDescriptor(parseFloat($(this).data("proba"))) + "</strong> (" + probability + ")</div>");
 });
 $(document).on('mouseleave', '.hover', function(e){
   //Hide
@@ -114,23 +140,25 @@ $(document).on('mouseleave', '.hover', function(e){
 });
 
 //Analyze Tweets
-function analyzeTweet(localThis){
+function analyzeTweet(e){
   //Clear hoverboxes
   $(".hover-box").remove();
+  $("#troll-pie").addClass("hidden");
 
   tweet_text = $input.text();
   if(tweet_text.length > 0){
-    $("#loading").fadeIn();
     $.get("https://ru.dpccdn.net/analyze/" + encodeURIComponent(tweet_text.replace(/\//g, "")), function(data){
       //Add small donut chart
-      drawPie(data.master);
+      if(data.master != 0) drawPie(data.master);
 
       //Change label at the top
-      if(data.master > 0) $(".is-troll").html("Leans Troll");
-      else $(".is-troll").html("Leans Non-Troll");
+      if(data.master > 0) $(".is-troll").html("More troll-like than organic");
+      else if(data.master == 0) $(".is-troll").html("Not enough information");
+      else $(".is-troll").html("More organic than troll-like");
 
       //Add highlighting
-      $(".text").html(addHighlighting(tweet_text, data.tokenized));
+      if($input.text() == tweet_text) $(".text").html(addHighlighting(tweet_text, data.tokenized));
+      else onKeyDown(e);//Restart interval if text has changed
 
       el = document.getElementById("text");
       el.focus();
@@ -149,8 +177,7 @@ function analyzeTweet(localThis){
         textRange.select();
       }
 
-      //Hide loading icon and display pie chart
-      $("#troll-pie").removeClass("hidden");
+      //Hide loading icon
       $("#loading").fadeOut();
     });
   }
