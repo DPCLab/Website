@@ -12,6 +12,16 @@ header{
 
 // Components
 @import "troll-detector";
+@import "line-chart";
+
+.bubble{
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  display: inline-block;
+  border: 1px solid gray;
+}
 
 //Body
 #body{

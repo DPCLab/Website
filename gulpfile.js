@@ -71,12 +71,15 @@ gulp.task('compress', function() {
   gulp.src(["src/JS/ml-troll-detector.js"])
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));
+  gulp.src(["src/JS/line-chart.js"])
+    .pipe(minify({}))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('webserver', function() {
   gulp.src('./')
     .pipe(webserver({
       livereload: true,
-      open: true
+      open: false
     }));
 });
