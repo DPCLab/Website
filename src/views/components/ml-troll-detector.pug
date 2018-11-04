@@ -2,3 +2,13 @@
 
 mixin ml-troll-detector()
   .troll-detector
+    .textbox
+      .level
+        .level-left
+          span#troll-pie.pie.level-item.hidden
+          span.heading.is-troll.level-item Please enter your text below
+      hr
+      span#loading(hidden)
+        i.fas.fa-spinner.fa-spin 
+      #text.text(contenteditable="true")
+      .character-limit 0/240
