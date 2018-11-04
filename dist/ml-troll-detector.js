@@ -18,6 +18,12 @@ function isEnteredKey(keyCode){ //Checks whether the keycode will produce a long
 function check_characters(e){
   $(".character-limit").html($input.text().length + "/240");
   if(isEnteredKey(e.which) && $input.text().length >= MAX_CHARACTERS) e.preventDefault();
+
+  if($input.text().length == 0){
+    $(".is-troll").html("Please enter your text below");
+    $("#troll-pie").addClass("hidden");
+    $("#loading").fadeOut();
+  }
 }
 
 $input.on('keyup', function (e){ //If the user stops typing, start a countdown
@@ -147,10 +153,5 @@ function analyzeTweet(localThis){
       $("#troll-pie").removeClass("hidden");
       $("#loading").fadeOut();
     });
-  }
-  else{
-    $(".is-troll").html("Please enter your text below");
-    $("#troll-pie").addClass("hidden");
-    $("#loading").fadeOut();
   }
 }
