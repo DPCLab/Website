@@ -42,7 +42,7 @@ function onKeyDown(e){
   if(isEnteredKey(e.which)) {
     clearTimeout(typingTimer);
     $("#loading").fadeIn();
-    $input.children("span").css("background-color", "#ffffff"); //Remove background highlighting
+    $input.children("span").css("background-color", "#ffffff00"); //Remove background highlighting
 
     typingTimer = setTimeout(function(){
       analyzeTweet(e);

@@ -1,0 +1,50 @@
+@import "theme";
+@import "troll-detector";
+
+@font-face{
+  font-family: "IBM_Plex_Mono";
+  src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
+}
+
+.troll-detector{
+  z-index: 40;
+  width: 100%;
+  margin-top: 100px;
+  margin-left: 0;
+  color: white;
+  font-family: "IBM_Plex_Mono";
+
+  .is-troll{
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .textbox{
+    height: calc(100vh - 200px);
+    font-size: 20px;
+    border-color: #262828;
+    hr{
+      margin-bottom: 10px;
+    }
+  }
+
+  #loading{
+    color: white;
+  }
+}
+
+body{
+  background-color: #1a1c1c;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+//Mobile
+@media screen and (max-width: 900px){
+  .troll-detector{
+    width: 100%;
+    margin-left: 0;
+  }
+}

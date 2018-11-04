@@ -49,7 +49,7 @@ function drawPie(responses, id, name){
         .attr("fill", function(d, i){
           return d.data.color;
         })
-        .attr("stroke", "white")
+        .attr("stroke", "#ffffff00")
         .attr("d", arc)
         .on("mouseover", function(d, i){
           tooltipText = "<h3>" + d.data.label + "</h3><p>" + d.value + " posts (" + formatPercent(d.value / total) + ")</p>";

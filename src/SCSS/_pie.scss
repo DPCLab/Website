@@ -60,8 +60,8 @@ $pie-width: 160px;
   svg{
     path{
       transition: background-color .2s ease;
-      stroke: $gray;
-      stroke-width: 2;
+      stroke: #ffffff00;
+      stroke-width: 0;
     }
   }
 }
