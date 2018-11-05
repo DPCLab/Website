@@ -3,13 +3,23 @@
   Automatically run the analyzer when the user stops typing
 */
 
-$(document).ready(function(){
-  $("#loading").hide();
-});
-
 var MAX_CHARACTERS = 240;
 var typingTimer;
 var $input = $('.troll-detector .text');
+
+$(document).ready(function(){
+  $("#loading").hide();
+
+  //Check for URL params
+  console.log("yo");
+  var text = new URL(window.location.href).searchParams.get("text");
+  console.log(text);
+  if(text != null && text.length > 0){
+    console.log(text);
+    $input.html(decodeURI(text));
+    analyzeTweet();
+  }
+});
 
 function isEnteredKey(keyCode){ //Checks whether the keycode will produce a longer text (i.e. "a" will return false but "SHIFT" will not)
   return keyCode == 9 || keyCode == 13 || keyCode == 32 || (keyCode >= 48 && keyCode <= 90) || (keyCode >= 96 && keyCode <= 111) || (keyCode >= 186 && keyCode <= 192) || (keyCode >= 219 && keyCode <= 222);
@@ -25,16 +35,6 @@ function check_characters(e){
     $("#loading").fadeOut();
   }
 }
-
-// $input.on('keyup', function (e){ //If the user stops typing, start a countdown
-//   check_characters(e);
-//   if(isEnteredKey(e.which)) {
-//     clearTimeout(typingTimer);
-//     typingTimer = setTimeout(function(){
-//       analyzeTweet(e);
-//     }, 1000);
-//   }
-// });
 
 function onKeyDown(e){
   //Remove the spans from displaying color once typing, if the key pressed will actually result in entered text
@@ -112,13 +112,6 @@ function addHighlighting(tweet_text, tokenized){
       output += tokens[i];
     }
   }
-
-  // for(var i = 0; i < keys.length; i++){
-  //   if(Math.abs(tokenized[keys[i]]) > 0){ //Only add highlighting to significant words
-  //     var regex = "([^>]|^)("+keys[i]+")([^<]|$)";
-  //     highlighted_text = highlighted_text.replace(new RegExp(regex), "$1<span data-proba = '" + tokenized[keys[i]] + "' class = 'hover' style = 'background-color:" + colorSwatch[Math.floor((tokenized[keys[i]] + 1)*5)] + "50'>$2</span>$3");
-  //   }
-  // }
 
   return output;
 }
