@@ -14,11 +14,34 @@ html(lang='en')
     link(href='/dist/CSS/troll-explorer-landing.css', rel='stylesheet', type='text/css')
   body
     include ../../components/ml-troll-detector.pug
-    .container
-      .columns
-        .column
-        .column
-          +ml-troll-detector() 
+    #body
+      .container
+        header
+          .level
+            .level-left
+              .level-item
+                a(href = "/") 
+                  img#icon(src = "/assets/graphics/icon/icon_transparent.png")
+                span.heading.is-size-6 
+                  span.em —
+                  span.em — 
+                  | Troll Tracker
+            .level-right
+              .level-item
+                span.is-pulled-right.is-hidden-mobile.has-text-white An Independent Project at Phillips Academy
+        .columns.is-5.is-variable
+          .column
+            .description
+              h1 Voluptate in anim Lorem incididunt in.
+              p.description-text Tempor proident irure ut laboris veniam anim dolore aliqua ipsum cillum nulla sunt Lorem. Consectetur sint qui ea et id id Lorem cupidatat cupidatat mollit dolore proident ea commodo esse. Ullamco irure do elit aliquip sunt exercitation dolore minim. Nulla cillum adipisicing fugiat esse voluptate incididunt pariatur occaecat incididunt. 
+              br
+              .disclaimer
+                ul 
+                  li Adipisicing pariatur elit officia duis sit mollit mollit qui dolore fugiat nostrud adipisicing mollit minim.
+                  li Adipisicing pariatur elit officia duis sit mollit mollit qui dolore fugiat nostrud adipisicing mollit minim.
+                  li Adipisicing pariatur elit officia duis sit mollit mollit qui dolore fugiat nostrud adipisicing mollit minim.
+          .column
+            +ml-troll-detector() 
     script(src='/bower_components/jquery/dist/jquery.min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
     script(type = "text/javascript").

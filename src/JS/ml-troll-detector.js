@@ -11,9 +11,7 @@ $(document).ready(function(){
   $("#loading").hide();
 
   //Check for URL params
-  console.log("yo");
   var text = new URL(window.location.href).searchParams.get("text");
-  console.log(text);
   if(text != null && text.length > 0){
     console.log(text);
     $input.html(decodeURI(text));
@@ -33,6 +31,7 @@ function check_characters(e){
     $(".is-troll").html("Please enter your text below");
     $("#troll-pie").addClass("hidden");
     $("#loading").fadeOut();
+    $(".placeholder").show();
   }
 }
 
@@ -42,6 +41,7 @@ function onKeyDown(e){
   if(isEnteredKey(e.which)) {
     clearTimeout(typingTimer);
     $("#loading").fadeIn();
+    $(".placeholder").hide();
     $input.children("span").css("background-color", "#ffffff00"); //Remove background highlighting
 
     typingTimer = setTimeout(function(){
@@ -91,7 +91,7 @@ function drawPie(responses){
         .attr("fill", function(d, i){
           return d.data.color;
         })
-        .attr("stroke", "white")
+        // .attr("stroke", "white")
         .attr("d", arc);
 
   $("#troll-pie").removeClass("hidden");
@@ -106,7 +106,7 @@ function addHighlighting(tweet_text, tokenized){
 
   for(var i = 0; i < tokens.length; i++){
     if(keys.indexOf(tokens[i]) != -1){
-      output += "<span data-proba = '" + tokenized[tokens[i]] + "' class = 'hover' style = 'background-color:" + (Math.abs(tokenized[tokens[i]]) < 0.2 ? "#ffffff" : colorSwatch[Math.floor((tokenized[tokens[i]] + 1)*5)]) + "50'>" + tokens[i] + "</span>";
+      output += "<span data-proba = '" + tokenized[tokens[i]] + "' class = 'hover' style = 'background-color:" + (Math.abs(tokenized[tokens[i]]) < 0.2 ? "#ffffff00" : colorSwatch[Math.floor((tokenized[tokens[i]] + 1)*5)] + "50") + "'>" + tokens[i] + "</span>";
     }
     else{
       output += tokens[i];
@@ -173,5 +173,11 @@ function analyzeTweet(e){
       //Hide loading icon
       $("#loading").fadeOut();
     });
+  }
+  else{
+    $(".is-troll").html("Please enter your text below");
+    $("#troll-pie").addClass("hidden");
+    $("#loading").fadeOut();
+    $(".placeholder").show();
   }
 }

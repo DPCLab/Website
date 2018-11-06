@@ -122,6 +122,10 @@ $media-offset: 18%;
   }
 }
 
+.placeholder{
+  display: none;
+}
+
 //Mobile
 @media screen and (max-width: 900px){
   .troll-detector{
