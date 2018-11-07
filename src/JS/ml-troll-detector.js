@@ -17,6 +17,15 @@ $(document).ready(function(){
     $input.html(decodeURI(text));
     analyzeTweet();
   }
+
+  //Type
+  new Typed("#title", {
+    strings: ["How do trolls talk?", "How do trolls divide?", "How do trolls lie?", "How do trolls tweet?"],
+    typeSpeed: 60,
+    backDelay: 1000,
+    smartBackspace: true,
+    loop: !0
+  });
 });
 
 function isEnteredKey(keyCode){ //Checks whether the keycode will produce a longer text (i.e. "a" will return false but "SHIFT" will not)

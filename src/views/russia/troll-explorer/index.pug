@@ -23,19 +23,19 @@ html(lang='en')
                 a(href = "/") 
                   img#icon(src = "/assets/graphics/icon/icon_transparent.png")
               .level-item
-                span.is-size-6 
+                span.is-size-6.em-dashes 
                   span.em &mdash;
                   span.em &mdash;
                   span.em &mdash;
-              .level-item
+              .level-item.troll-tracker
                 strong Troll Tracker
             .level-right
               .level-item
                 span.is-pulled-right.is-hidden-mobile.has-text-white <a href = "https://rmrm.io">Miles McCain</a> and <a href = "http://jeffreyshen.com">Jeffrey Shen</a>
         .columns
-          .column.is-5
+          .column.is-5-desktop.is-6-tablet
             .description
-              h1 How do trolls talk?
+              h1#title
               p.description-text We use machine learning to identify patterns in the language of Russian government trolls. Enter text using the tool on the right, or tag <a href="https://twitter.com/TrackTheTrolls">@TrackTheTrolls</a> in reply to a Tweet. For more information about the inner workings of our model, see our blog post.
               br
               .disclaimer
@@ -55,4 +55,5 @@ html(lang='en')
       p
         img(alt = "Clicky" width = "1" height = "1" src = "//in.getclicky.com/101144012ns.gif")
     script(src = "/bower_components/d3/d3.min.js")
+    script(src = "/bower_components/typed.js/lib/typed.min.js")
     script(src = "/dist/ml-troll-detector-min.js")

@@ -4,6 +4,18 @@ $media-offset: 18%;
   width: 100% + $media-offset;
   margin-left: -0.5 * $media-offset;
 
+  .placeholder{
+    display: block;
+    color: #9c9c9c;
+    position: absolute;
+    top: 46px;
+    font-size: 16px;
+    left: 0;
+    padding: 0 14px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
   .textbox{
     width: 100%;
     height: 180px;
