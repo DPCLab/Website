@@ -177,6 +177,9 @@ body:after {
   .troll-detector{
     width: 100%;
     margin-left: 0;
+    .caption{
+      display: none;
+    }
   }
 }
 
@@ -209,6 +212,15 @@ body:after {
     padding: 15px;
   }
 }
+
+@media screen and (max-width: 496px){
+  .troll-detector{
+    .placeholder{
+      top: 91px;
+    }
+  }
+}
+
 
 .model, .description {
   display: none;
@@ -247,7 +259,7 @@ button.is-outlined {
 }
 
 .disclaimer ul li {
-  padding-bottom: 1em;
+  padding-bottom: 0.7em;
 }
 
 // .description button:hover {

@@ -34,7 +34,7 @@ html(lang='en')
               .level-item
                 span.is-pulled-right.is-hidden-mobile.has-text-white <a href = "https://rmrm.io">Miles McCain</a> and <a href = "http://jeffreyshen.com">Jeffrey Shen</a>
         .columns.is-vcentered.is-centered
-          .column.is-5-desktop.is-6-tablet.description
+          .column.is-6-widescreen.is-7-desktop.is-7-tablet.description
             h1#title
             p.description-text We use machine learning to identify patterns in the language of Russian government trolls.
             br
@@ -44,7 +44,7 @@ html(lang='en')
             br
             button.button.is-light.is-outlined(onClick="setState('model')")
               span Explore
-          .column.is-5-desktop.is-6-tablet.model
+          .column.is-6-widescreen.is-7-desktop.is-7-tablet.model
             +ml-troll-detector() 
             br
             .disclaimer
