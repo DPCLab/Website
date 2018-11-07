@@ -2,7 +2,8 @@
 @import "troll-detector";
 
 // ** Typography **
-$updated_accent: #9488ee;
+$updated_accent: #dd32ff;
+$updated_accent_clear: #dd32ff50;
 
 h1, h2, h3, h4, h5, h6, span, p, strong, a{
   color: white;
@@ -102,8 +103,8 @@ header{
 
   .textbox{
     font-size: 18px;
-    // border-color: #262828;
-    border: none;
+    border-color: $updated_accent_clear;
+    border-radius: 3px;
     hr{
       margin-bottom: 10px;
     }
@@ -213,12 +214,41 @@ body:after {
   display: none;
 }
 
-// .description button {
-//   background-color: #ffffff00 !important;
-//   border: none;
-//   color: $updated_accent !important;
-//   font-family: "IBM_Plex_Mono";
-// }
+.description button {
+  font-family: "IBM_Plex_Mono";
+}
+
+#title {
+  color: $updated_accent;
+}
+
+a {
+  font-size: unset !important;
+  text-decoration: underline;
+  text-decoration-color: $updated_accent;
+}
+
+.level a {
+  text-decoration: none;
+}
+
+button.is-outlined {
+  border-color: $updated_accent !important;
+  span {
+    color: $updated_accent !important;
+  }
+}
+
+.button.is-light.is-outlined:hover {
+  background-color: $updated_accent !important;
+  span {
+    color: white !important;
+  }
+}
+
+.disclaimer ul li {
+  padding-bottom: 1em;
+}
 
 // .description button:hover {
 //   color: darken($updated_accent, 5) !important;

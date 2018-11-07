@@ -42,17 +42,18 @@ html(lang='en')
             br
             p.description-text For more information about the inner workings of our model, see our <a href="/russia/machine-learning-troll-detection">extended explanation</a>.
             br
-            button.button.is-white.is-outlined.is-large(onClick="setState('model')")
+            button.button.is-light.is-outlined(onClick="setState('model')")
               span Explore
           .column.is-5-desktop.is-6-tablet.model
             +ml-troll-detector() 
             br
             .disclaimer
               ul 
+                li All percentages shown in the tool above indicate the scaled confidence (from -100% to +100%) of the model that a text is theoretically a Russian IRA troll Tweet (positive values) or an organic Tweet (negative values) in an evenly distributed dataset.
                 li This is an educational tool; this model is not meant to detect real Russian trolls.
                 li Our model is tuned for 2018 discourse on Twitter. It may be less accurate when analyzing content from different time periods.
             br
-            button.button.is-white.is-outlined.is-small(onClick="setState('description')")
+            button.button.is-light.is-outlined.is-small(onClick="setState('description')")
               span Back
     script(src='/bower_components/jquery/dist/jquery.min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
