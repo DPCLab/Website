@@ -2,10 +2,10 @@
   "title": "Inside the Mind of the Troll",
   "subtitle": "Using Machine Learning to Understand Russian Disinformation",
   "date": "Nov. 7, 2018",
-  "featured_image_url": "",
-  "featured_image_alt": "",
-  "featured_image_caption": "",
-  "featured_image_credit": "",
+  "featured_image_url": "/assets/graphics/russia/model/model_blog_post.png",
+  "featured_image_alt": "JSON tweets collected about the midterms.",
+  "featured_image_caption": "Shown above are JSON-encoded data of Tweets related to the 2018 midterm elections in the United States.",
+  "featured_image_credit": "Miles McCain/Twitter API",
   "tag": "Russian Meddling Pt. 2",
   "description": "We've released an interactive machine learning model that helps make the Russian disinformation campaign just slightly more accessible. Given any English Tweet, our model determines whether that Tweet uses language specifically popular among Russian trolls—or whether the Tweet more closely resembles organic content. "
 }
