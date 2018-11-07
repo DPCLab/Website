@@ -59,6 +59,7 @@ function onKeyDown(e){
   }
 }
 
+$input.on('keyup', check_characters);
 $input.on('keydown', onKeyDown);
 
 /*
