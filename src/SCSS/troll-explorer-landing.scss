@@ -2,20 +2,36 @@
 @import "troll-detector";
 
 // ** Typography **
+$updated_accent: #9488ee;
 
 @font-face{
   font-family: "IBM_Plex_Mono";
   src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
 }
 
-h1, h2, h3, h4, h5, h6, span, p{
+@font-face{
+  font-family: "IBM_Plex_Mono";
+  font-weight: bold;
+  src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
+}
+
+
+h1, h2, h3, h4, h5, h6, span, p, strong, a{
   color: white;
 }
 
+a{
+  &:hover{
+    color: $updated_accent;
+  }
+}
+
 h1{
-  font-family: "IBM_Plex_Mono";
+  font-family: "IBM_Plex_Sans";
   font-size: 2.5em;
   margin-bottom: 8px;
+  font-weight: bold;
+  // line-height: 3rem;
 }
 
 .description-text{
@@ -23,8 +39,8 @@ h1{
 }
 
 .disclaimer{
-  font-size: 12px;
-  color: #9c9c9c;
+  // font-size: 12px;
+  color: #d9d9d9;
 }
 
 // ** Structure **
@@ -38,18 +54,26 @@ h1{
 
 header{
   height: 80px;
-  padding: 15px 0;
-  .level-right{
-    margin-top: -7px;
+  margin-top: 15px;
+  padding: 15px 50px;
+
+  a{
+    font-family: "IBM_Plex_Mono";
+    font-weight: normal;
   }
+
   .em{
     margin-right: -1px;
+  }
+  font-family: "IBM_Plex_Mono";
+  #icon{
+    width: 35px;
   }
 }
 
 .columns{
-  height: calc(100vh - 110px);
-  padding: 50px;
+  height: calc(100vh - 135px);
+  padding: 30px 50px;
   z-index: 10;
 }
 
@@ -88,6 +112,9 @@ header{
 
   .hover-box{
     color: black;
+    strong{
+      color: black;
+    }
   }
 
   .placeholder{
@@ -134,7 +161,7 @@ body{
 
 body:after {
   content: "";
-  background-color: #949494;
+  background-color: #0f1546;
   background-image: url("/assets/graphics/russia/troll-explorer/dirty-old-black-shirt.png");
 
   //Needs to move outside the element

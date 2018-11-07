@@ -22,24 +22,26 @@ html(lang='en')
               .level-item
                 a(href = "/") 
                   img#icon(src = "/assets/graphics/icon/icon_transparent.png")
-                span.heading.is-size-6 
-                  span.em —
-                  span.em — 
-                  | Troll Tracker
+              .level-item
+                span.is-size-6 
+                  span.em &mdash;
+                  span.em &mdash;
+                  span.em &mdash;
+              .level-item
+                strong Troll Tracker
             .level-right
               .level-item
-                span.is-pulled-right.is-hidden-mobile.has-text-white An Independent Project at Phillips Academy
-        .columns.is-5.is-variable
-          .column
+                span.is-pulled-right.is-hidden-mobile.has-text-white <a href = "https://rmrm.io">Miles McCain</a> and <a href = "http://jeffreyshen.com">Jeffrey Shen</a>
+        .columns
+          .column.is-5
             .description
-              h1 Voluptate in anim Lorem incididunt in.
-              p.description-text Tempor proident irure ut laboris veniam anim dolore aliqua ipsum cillum nulla sunt Lorem. Consectetur sint qui ea et id id Lorem cupidatat cupidatat mollit dolore proident ea commodo esse. Ullamco irure do elit aliquip sunt exercitation dolore minim. Nulla cillum adipisicing fugiat esse voluptate incididunt pariatur occaecat incididunt. 
+              h1 How do trolls talk?
+              p.description-text We use machine learning to identify patterns in the language of Russian government trolls. Enter text using the tool on the right, or tag <a href="https://twitter.com/TrackTheTrolls">@TrackTheTrolls</a> in reply to a Tweet. For more information about the inner workings of our model, see our blog post.
               br
               .disclaimer
                 ul 
-                  li Adipisicing pariatur elit officia duis sit mollit mollit qui dolore fugiat nostrud adipisicing mollit minim.
-                  li Adipisicing pariatur elit officia duis sit mollit mollit qui dolore fugiat nostrud adipisicing mollit minim.
-                  li Adipisicing pariatur elit officia duis sit mollit mollit qui dolore fugiat nostrud adipisicing mollit minim.
+                  li This is an educational tool; this model is not meant to detect real Russian trolls.
+                  li Our model is tuned for 2018 discourse on Twitter. It may be less accurate when analyzing content from different time periods.
           .column
             +ml-troll-detector() 
     script(src='/bower_components/jquery/dist/jquery.min.js')
