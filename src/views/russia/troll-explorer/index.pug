@@ -52,6 +52,7 @@ html(lang='en')
                 li All percentages shown in the tool above indicate the scaled confidence (from -100% to +100%) of the model that a text is theoretically a Russian IRA troll Tweet (positive values) or an organic Tweet (negative values) in an evenly distributed dataset.
                 li This is an educational tool; this model is not meant to detect real Russian trolls.
                 li Our model is tuned for 2018 discourse on Twitter. It may be less accurate when analyzing content from different time periods.
+                li Our model was built using <a href="https://scikit-learn.org/stable/index.html#"><i>scikit-learn</i></a>. For more information, see our <a href="/russia/machine-learning-troll-detection">extended explanation</a>.
             br
             button.button.is-light.is-outlined.is-small(onClick="setState('description')")
               span Back

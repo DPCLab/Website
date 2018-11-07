@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, h6, span, p, strong, a{
 a{
   &:hover{
     color: $updated_accent;
+    text-decoration-color: $updated_accent;
   }
 }
 
@@ -237,7 +238,7 @@ body:after {
 a {
   font-size: unset !important;
   text-decoration: underline;
-  text-decoration-color: $updated_accent;
+  text-decoration-color: white;
 }
 
 .level a {
