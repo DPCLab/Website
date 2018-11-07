@@ -25,7 +25,7 @@ html(lang='en')
       br
       .columns
         .column.is-12
-          each post in ["intro-to-russian-meddling"]
+          each post in ["intro-to-russian-meddling", "machine-learning-troll-detection"]
             .post
               -var data = JSON.parse(read("./src/views/russia/" + post + "/config.json"));
               .img.full
