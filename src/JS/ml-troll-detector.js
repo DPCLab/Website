@@ -13,16 +13,16 @@ $(document).ready(function(){
   //Check for URL params
   var text = new URL(window.location.href).searchParams.get("text");
   if(text != null && text.length > 0){
-    console.log(text);
+    $(".placeholder").hide();
     $input.html(decodeURI(text));
     analyzeTweet();
   }
 
   //Type
   new Typed("#title", {
-    strings: ["How do trolls talk?", "How do trolls divide?", "How do trolls lie?", "How do trolls tweet?"],
-    typeSpeed: 60,
-    backDelay: 1000,
+    strings: ["How do trolls talk?", "How do trolls divide?", "How do trolls lie?", "How do trolls tweet?", "How do trolls type?", "How do trolls sound?", "How do trolls anger?", "How do trolls hate?"],
+    typeSpeed: 45,
+    backDelay: 2000,
     smartBackspace: true,
     loop: !0
   });

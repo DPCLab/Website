@@ -71,6 +71,9 @@ gulp.task('compress', function() {
   gulp.src(["src/JS/ml-troll-detector.js"])
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));
+  gulp.src(["src/JS/troll-landing.js"])
+    .pipe(minify({}))
+    .pipe(gulp.dest('dist'));
   gulp.src(["src/JS/line-chart.js"])
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));

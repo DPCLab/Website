@@ -12,7 +12,8 @@ html(lang='en')
     link(href='/bower_components/bulma/css/bulma.min.css' rel='stylesheet' type='text/css')
     link(href='/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css' rel='stylesheet' type='text/css')
     link(href='/dist/CSS/troll-explorer-landing.css', rel='stylesheet', type='text/css')
-  body
+    script(src = "/dist/troll-landing-min.js")
+  body(onload="establishState()")
     include ../../components/ml-troll-detector.pug
     #body
       .container
@@ -32,18 +33,27 @@ html(lang='en')
             .level-right
               .level-item
                 span.is-pulled-right.is-hidden-mobile.has-text-white <a href = "https://rmrm.io">Miles McCain</a> and <a href = "http://jeffreyshen.com">Jeffrey Shen</a>
-        .columns
-          .column.is-5-desktop.is-6-tablet
-            .description
-              h1#title
-              p.description-text We use machine learning to identify patterns in the language of Russian government trolls. Enter text using the tool on the right, or tag <a href="https://twitter.com/TrackTheTrolls">@TrackTheTrolls</a> in reply to a Tweet. For more information about the inner workings of our model, see our blog post.
-              br
-              .disclaimer
-                ul 
-                  li This is an educational tool; this model is not meant to detect real Russian trolls.
-                  li Our model is tuned for 2018 discourse on Twitter. It may be less accurate when analyzing content from different time periods.
-          .column
+        .columns.is-vcentered.is-centered
+          .column.is-5-desktop.is-6-tablet.description
+            h1#title
+            p.description-text We use machine learning to identify patterns in the language of Russian government trolls.
+            br
+            p.description-text To analyze content, either click the button below or tag <a href="https://twitter.com/TrackTheTrolls">@TrackTheTrolls</a> in reply to a Tweet.
+            br
+            p.description-text For more information about the inner workings of our model, see our <a href="/russia/machine-learning-troll-detection">extended explanation</a>.
+            br
+            button.button.is-white.is-outlined.is-large(onClick="setState('model')")
+              span Explore
+          .column.is-5-desktop.is-6-tablet.model
             +ml-troll-detector() 
+            br
+            .disclaimer
+              ul 
+                li This is an educational tool; this model is not meant to detect real Russian trolls.
+                li Our model is tuned for 2018 discourse on Twitter. It may be less accurate when analyzing content from different time periods.
+            br
+            button.button.is-white.is-outlined.is-small(onClick="setState('description')")
+              span Back
     script(src='/bower_components/jquery/dist/jquery.min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
     script(type = "text/javascript").
