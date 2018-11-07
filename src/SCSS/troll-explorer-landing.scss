@@ -4,18 +4,6 @@
 // ** Typography **
 $updated_accent: #9488ee;
 
-@font-face{
-  font-family: "IBM_Plex_Mono";
-  src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
-}
-
-@font-face{
-  font-family: "IBM_Plex_Mono";
-  font-weight: bold;
-  src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
-}
-
-
 h1, h2, h3, h4, h5, h6, span, p, strong, a{
   color: white;
 }
@@ -24,6 +12,10 @@ a{
   &:hover{
     color: $updated_accent;
   }
+}
+
+.caption{
+  display: none;
 }
 
 h1{

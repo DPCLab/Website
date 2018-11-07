@@ -23,6 +23,17 @@ $gray: rgb(242,242,242);
   src: url("../../assets/fonts/IBM_Plex_Serif/IBMPlexSerif-Bold.ttf");
 }
 
+@font-face{
+  font-family: "IBM_Plex_Mono";
+  src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
+}
+
+@font-face{
+  font-family: "IBM_Plex_Mono";
+  font-weight: bold;
+  src: url("/assets/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf");
+}
+
 h1, h2, h3, h4, h5, h6{
   font-family: "IBM_Plex_Sans";
   font-weight: bold;
@@ -44,6 +55,10 @@ p, li{
 ul{
   list-style-type: disc;
   padding-left: 25px;
+}
+
+.monospace{
+  font-family: "IBM_Plex_Mono";
 }
 
 a, .dropdown span, .dropdown-item{

@@ -19,11 +19,14 @@ $media-offset: 18%;
     width: 100% + $media-offset;
     margin-left: -0.5 * $media-offset;
   }
-  p{
+  p, li{
     font-family: "IBM_Plex_Serif";
     a{
       font-family: "IBM_Plex_Serif";
     }
+  }
+  li{
+    margin-bottom: 10px;
   }
 }
 
@@ -35,7 +38,7 @@ $media-offset: 18%;
       width: 100%;
       margin: 0;
     }
-    .full{
+    .full, .troll-detector{
       width: calc(100vw - 100%) + 100%;
       margin-left: calc(100vw - 100%) / -2;
       .caption{
