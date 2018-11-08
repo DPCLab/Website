@@ -67,6 +67,8 @@ $input.on('keydown', onKeyDown);
 */
 var colorSwatch = ["#3A539B","#647AB3","#8FA2CC","#B9C9E5","#E4F1FE","#F1A9A0","#F08B85","#F06E6A","#F0514F","#F03434"];
 
+var pieColors = ["#3A539B" ,"#F03434"];
+
 //Donut chart
 function drawPie(responses){
   var data = [{
@@ -74,7 +76,7 @@ function drawPie(responses){
     "color": "#e8e8e8"
   }, {
     "value": Math.abs(responses),
-    "color": colorSwatch[Math.floor((responses + 1)*5)]
+    "color": pieColors[Math.round((responses + 1)/2)]
   }];
 
   var radius = 10,
@@ -142,6 +144,8 @@ $(document).on('mouseleave', '.hover', function(e){
   $(this).children(".hover-box").remove();
 });
 
+
+
 //Analyze Tweets
 function analyzeTweet(e){
   //Clear hoverboxes
@@ -155,9 +159,11 @@ function analyzeTweet(e){
       if(data.master != 0) drawPie(data.master);
 
       //Change label at the top
-      if(data.master > 0) $(".is-troll").html("More troll-like than organic");
-      else if(data.master == 0) $(".is-troll").html("Not enough information");
-      else $(".is-troll").html("More organic than troll-like");
+      var probability = "" + (data.master * 100).toFixed(2) + "%";
+
+      if(data.master > 0) $(".is-troll").html(`More troll-like than organic (${probability})`);
+      else if(data.master == 0) $(".is-troll").html(`Not enough information (${probability})`);
+      else $(".is-troll").html(`More organic than troll-like (${probability})`);
 
       //Add highlighting
       if($input.text() == tweet_text) $(".text").html(addHighlighting(tweet_text, data.tokenized));
