@@ -19,3 +19,10 @@
 .thumbnail {
   max-width: 192px;
 }
+
+
+@media screen and (max-width: 768px){
+  .thumbnail{
+    max-width: 100%;
+  }
+}
