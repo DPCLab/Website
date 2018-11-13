@@ -31,7 +31,10 @@ function generateTooltipMultiline(json) {
     responseStr += "<div class = 'bubble' style = 'background:" + json.responses[i].color + "'></div> <span>" + json.labels[i] + ": " + json.responses[i].data.toFixed(2) + "</span><br>";
   }
 
-  if(typeof json.title == "object") header = (header.getMonth() + 1) + "/" + header.getFullYear(); //Format date
+  if(typeof json.title == "object") {
+    if(json.responses.length == 1) header = "11/" + (header.getDate()) + " " + (header.getHours() % 12 == 0 ? 12 : header.getHours() % 12) + ":00" + (header.getHours() >= 12 ? "PM" : "AM");
+    else header = (header.getMonth() + 1) + "/" + header.getFullYear(); //Format date
+  }
 
   return "<h4>" + header + "</h4>" + responseStr;
 }
@@ -64,7 +67,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
   //Set Domains
   if(ordinal) {
     x.domain(d3.extent(data, function(d) { return d.x; }));
-    y.domain([-0.4, 0.8]);
+    y.domain([currentThis.dataset.hours ? -0.6 : -0.4, currentThis.dataset.hours ? 0.6 : 0.8]);
   }
   else {
     x.domain([-1.2, 1.2]);
@@ -117,9 +120,9 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
   thisNode.select('svg').append("line")
     .attr("class", "position-line hidden")
     .attr("x1", x(0))
-    .attr("y1", y(ordinal ? -0.4 : 0) + margin.top)
+    .attr("y1", y(ordinal ? currentThis.dataset.hours ? -0.6 : -0.4 : 0) + margin.top)
     .attr("x2", x(0))
-    .attr("y2", y(ordinal ? 0.8 : 1) + margin.top)
+    .attr("y2", y(ordinal ? currentThis.dataset.hours ? 0.6 : 0.8 : 1) + margin.top)
     .style("stroke", "black")
     .style("stroke-width", "1")
     .style("stroke-dasharray", "5,5");
@@ -159,7 +162,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
       .style("font-family", "IBM_Plex_Sans")
       .style("font-size", "14px")
       .attr("transform", "translate(0," + (height) + ")")
-      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%Y")))
+      .call(d3.axisBottom(x).tickFormat(d3.timeFormat(currentThis.dataset.hours ? "11/%d %I:00%p" : "%m/%Y")).ticks(4))
       .selectAll("text")
         .attr("y", 15)
         .attr("x", 15)
@@ -195,7 +198,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
 
   //Label for X axis
   svg.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + (ordinal ? 30 : 20)) + ")")
+    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + (ordinal ? 40 : 20)) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "IBM_Plex_Sans")
     .style("font-size", "14px")
@@ -223,6 +226,7 @@ d3.selectAll(".line_chart").each(function(d, index){
         var temp = d.split(",");
         if(temp[0]){
           var parseTime = d3.timeParse("%m/%Y");
+          if(currentThis.dataset.hours) parseTime = d3.timeParse("%d %H");
           data.push({
             x: currentThis.dataset.ordinal ? parseTime(temp[0]) : parseFloat(temp[0]),
             y: temp.slice(1).map(function(element){
