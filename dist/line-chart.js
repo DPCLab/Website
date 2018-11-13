@@ -39,7 +39,7 @@ function generateTooltipMultiline(json) {
   return "<h4>" + header + "</h4>" + responseStr;
 }
 
-var margin = {top: 20, right: 40, bottom: 50, left: 60};
+var margin = {top: 30, right: 40, bottom: 50, left: 60};
 var graphLength = d3.selectAll(".line_chart").size(),
     dataForGraphs = new Array(graphLength),
     bisectors = new Array(graphLength);
@@ -198,7 +198,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
 
   //Label for X axis
   svg.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + (ordinal ? 40 : 20)) + ")")
+    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "IBM_Plex_Sans")
     .style("font-size", "14px")
