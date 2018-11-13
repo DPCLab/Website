@@ -18,31 +18,44 @@ html(lang='en')
     #body
       .has-text-centered
         br
-        h1.is-size-2.title Russian Meddling
+        h1.is-size-2.title.has-text-black Russian Meddling
         span.subtitle.is-size-4 A four-part series exploring Russian meddling on American social media.
         span.heading.is-size-6.names Miles McCain and Jeffrey Shen
         br
       br
-      .columns
-        .column.is-12
+      .columns.is-centered
+        .column.is-6
+          hr
           each post in ["intro-to-russian-meddling", "machine-learning-troll-detection"]
-            .post
+            .post.columns
               -var data = JSON.parse(read("./src/views/russia/" + post + "/config.json"));
-              .img.full
-                img(src = data.featured_image_url)
-              h1
-                a(href = "./" + post)=data.title
-              p.heading
-                span.tag-inline=data.tag
-                | &nbsp;•&nbsp;
-                span(style = "font-size:14px;") #{data.date}
-              p=data.description
+              .column.is-narrow
+                .img.image.thumbnail
+                  img(src = data.featured_image_url)
+              .column
+                h1
+                  a(href = "./" + post)=data.title
+                p.heading
+                  span.tag-inline=data.tag
+                  | &nbsp;•&nbsp;
+                  span(style = "font-size:14px;") #{data.date}
+                p=data.description
             hr 
-          .epilogue 
-            p Stay tuned—More blog posts and projects coming!
-        //- .column.is-4
+          .post.columns
+            .column.is-narrow
+              .img.image.thumbnail
+                img(src = "/assets/graphics/russia/troll-explorer/thumb.png")
+            .column
+              h1
+                a(href = "./troll-explorer") Interactive Explorer
+              p.heading
+                span.tag-inline RUSSIAN MEDDLING PT. 4
+                | &nbsp;•&nbsp;
+                span(style = "font-size:14px;") NOV. 13, 2018
+              p We used machine learning to identify patterns of language in Russian government trolls. Use this interactive online tool to learn more about the ways that Russian state-sponsored government trolls post online—and how it compares to your own language.
+            hr 
       br
-      br
+      hr
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../dist/script-min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
