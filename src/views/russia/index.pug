@@ -26,7 +26,7 @@ html(lang='en')
       .columns.is-centered
         .column.is-12-mobile.is-12-tablet.is-10-desktop
           hr
-          each post in ["intro-to-russian-meddling", "machine-learning-troll-detection", "troll-explorer"]
+          each post in ["intro-to-russian-meddling", "machine-learning-troll-detection", "model-applications", "troll-explorer"]
             .post.columns
               -var data = JSON.parse(read("./src/views/russia/" + post + "/config.json"));
               .column.is-narrow

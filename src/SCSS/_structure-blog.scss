@@ -8,6 +8,19 @@
   font-size: 18px;
 }
 
+.aside{
+  font-family: "IBM_Plex_Sans" !important;
+  color: gray;
+  a{
+    font-size: 14px;
+    color: gray;
+    font-family: "IBM_Plex_Sans" !important;
+  }
+  font-size: 14px;
+  padding-left: 1em;
+  border-left: 2px solid gray;
+}
+
 body{
   width: 100vw;
   overflow-x: hidden;

@@ -1,0 +1,57 @@
+extends ../blog-layout.pug
+block vars
+  -var data = JSON.parse(read("./src/views/russia/model-applications/config.json"));
+  -var title = data.title
+  -var subtitle = data.subtitle
+  -var date = data.date
+  -var featured_image_url = data.featured_image_url
+  -var featured_image_alt  = data.featured_image_alt
+  -var featured_image_caption  = data.featured_image_caption
+  -var featured_image_credit = data.featured_image_credit
+  -var tag = data.tag
+
+block body 
+  include ../../components/line-graph.pug
+  p The Russian government’s <a href = "https://www.wired.com/story/did-russia-affect-the-2016-election-its-now-undeniable/">campaign</a> to influence the 2016 presidential election in <a href = "https://www.usatoday.com/story/news/2018/08/03/russian-us-election-interference-donald-trump/878910002/">favor</a> of Donald Trump is well <a href = "https://www.bloomberg.com/opinion/articles/2018-07-24/russian-meddling-helped-trump-win-in-2016">documented</a>. There is <a href = "https://www.newyorker.com/magazine/2018/10/01/how-russia-helped-to-swing-the-election-for-trump">little doubt</a> that thousands of hackers, trolls, and foreign agents worked at the direction of Vladimir Putin’s government. Their objective was clear: to <a href = "https://www.politico.com/story/2018/07/18/russia-election-hacking-trump-putin-698087">destabilize</a> American online discourse.
+  br
+  p Over the past several months, we conducted an inquiry into the language patterns of Russian trolls. Using official data <a href = "https://blog.twitter.com/official/en_us/topics/company/2018/enabling-further-research-of-information-operations-on-twitter.html">released</a> by Twitter, we built an interactive <a href = "https://dpclab.org/russia/machine-learning-troll-detection/">machine learning model</a> capable of determining whether any text uses language specifically popular among Russian trolls on Twitter—or if it more closely resembles organic content.
+  br 
+  p Now, we are applying our model and other text analysis techniques to better understand the way that Russian trolls behaved online, especially with respect to major public figures. To that end, we will look at how the language used on Twitter by Donald Trump and Hillary Clinton—the major candidates in the 2016 election—compares to that of Russian trolls.
+  br
+  h1 Sentiment Analysis—
+  p Russian trolls are often <a href = "https://www.wired.com/story/russia-indictment-twitter-facebook-play-both-sides/">associated</a> with highly divisive, negative, and angering content. According to <a href = "https://en.wikipedia.org/wiki/Internet_troll">Wikipedia</a>, a troll is “a person who starts quarrels or upsets people on the Internet to distract and sow discord by posting inflammatory and digressive [...] messages in an online community.” From this definition, one may naturally assume that the messaging of Russian government trolls is uniformly negative.
+  br
+  p Unfortunately, this assumption turns out to be far from the truth. Using the state-of-practice sentiment analysis algorithm <a href = "http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf">VADER</a>, we calculated the sentiment of approximately four million English troll Tweets. For reference, we then also calculated the sentiment of just as many random ‘organic’ English Tweets.
+  br 
+  p The average sentiment for both the troll and organic Tweets was approximately zero. VADER sentiment scores are distributed from -1 to +1, where -1 is the most negative, +1 is the most positive, and 0 is neutral. For the average sentiment to be zero, both troll and organic Tweets must either be themselves largely neutral, or contain a relatively equal number of positive and negative tweets.
+  br
+  p.aside For a more complete explanation of VADER sentiment analysis, please see <a href = "https://medium.com/analytics-vidhya/simplifying-social-media-sentiment-analysis-using-vader-in-python-f9e6ec6fc52f">this detailed primer</a>.
+  br
+  p The answer, it turns out, is both. A significant portion of both troll and organic Tweets were near zero. Still, the sentiment distribution was largely bimodal: there are approximately as many negative Tweets in each group as positive Tweets, challenging the conventional wisdom that troll content is uniformly negative—instead, it seems to closely resemble the sentiment distribution of organic content, with approximately equal portions of negative and positive tweets, and a substantial number of neutral Tweets.
+  br
+  +line_chart("sentiment-spike", "#eb974e,#049372", 300, "VADER Sentiment Score", "Relative Density", "/assets/data/sentiment_spike.csv", "false", 2, "Troll Tweets,Random Tweets", "Figure 1. Sentiment Distribution of Tweets")
+  br
+  p While Figure 1 clearly conveys the sheer volume of neutral tweets and the trimodal nature of the sentiment distribution, its scale muffles the contours of the non-neutral Tweets. Figure 2 shows the same distribution as Figure 1, except with neutral Tweets omitted.
+  br
+  +line_chart("sentiment-no-spike", "#eb974e,#049372", 300, "VADER Sentiment Score", "Relative Density", "/assets/data/sentiment_no_spike.csv", "false", 2, "Troll Tweets,Random Tweets", "Figure 2. Sentiment Distribution of Non-Neutral Tweets")
+  br 
+  p As Figure 2 demonstrates, neither troll nor organic Tweets are uniformly positive or negative. Still, patterns do emerge. For example, organic Tweets tend to be slightly more positive than troll Tweets, and troll Tweets tend to be slightly more negative than organic Tweets. Troll messaging, then, is no monolith: it not only pushes both conservative and liberal content, but also uses both negative and positive language.
+  br
+  h1 Clinton and Trump—
+  p Now that we have a more nuanced understanding of the language used by Russian trolls, we can compare Donald Trump and Hillary Clinton’s rhetoric on Twitter. Importantly, we don’t claim that either Trump or Clinton engaged in activity that is itself ‘troll-like.’ Instead, we only compare the language used on their Twitter accounts—written either by them or aides who post on their behalf—to the language used by Russian trolls on Twitter. Moreover, the machine learning model we use to classify Trump and Clinton’s Tweets is primarily trained upon Tweets from 2018—therefore, it’s possible the model cannot accurately assess Tweets before then. 
+  br 
+  p.aside For more information about the machine learning model used to perform this analysis, please see our extended explanation.
+  br 
+  p To perform this analysis, we used an <a href = "https://github.com/bpb27/twitter_scraping">open-source project</a> to collect every Tweet made by each figure that was not a ‘reply’ between June 2013 and October 2018. (Our analysis begins in June 2013, when Hillary Clinton sent her <a href = "https://edition.cnn.com/2018/10/19/politics/russian-troll-instructions/index.html">first tweet</a>.) In total, our analysis includes 34,438 tweets (8,072 from Hillary Clinton, and 26,366 from Donald Trump).
+  br
+  +line_chart("trump-clinton", "#F03434,#3A539B", 300, "Time", "Troll Model Score", "/assets/data/trump-clinton.csv", "false", 2, "Donald Trump,Hillary Clinton", "Figure 3. Troll Model Scores of Donald Trump and Hillary Clinton", "true", "true")
+  br
+  p Interestingly, we find that from June 2013 to November 2015, Hillary Clinton’s Twitter account used more language specifically popular among Russian trolls than Donald Trump’s. This trend quickly reversed in 2016, when the language of Donald Trump’s Twitter account more closely resembled that of Russian trolls than that of organic content.
+  br 
+  h1 What’s next—
+  p Ultimately, only time will tell whether Russia’s online disinformation campaign will cease. For now, it <a href = "https://www.npr.org/2018/10/23/659545242/heres-how-russia-runs-its-disinformation-effort-against-the-2018-midterms">rages on</a>. Nonetheless, we hope that our analysis—along with that of other researchers—will provide a better understanding of the Russian campaign. Sunlight, after all, is the best disinfectant.
+  br
+  br
+block scripts
+  script(src = "/bower_components/d3/d3.min.js")
+  script(src = "/dist/line-chart.js")

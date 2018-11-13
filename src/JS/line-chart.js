@@ -202,16 +202,14 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
     .style("text-anchor", "middle")
     .style("font-family", "IBM_Plex_Sans")
     .style("font-size", "14px")
-    .style("font-weight", "bold")
     .text(yLabel);
 
   //Label for X axis
   svg.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+    .attr("transform", "translate(" + (width / 2) + " ," + (height + 45) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "IBM_Plex_Sans")
     .style("font-size", "14px")
-    .style("font-weight", "bold")
     .text(xLabel);
 
   //Add grayed box for the cleaned dataset
