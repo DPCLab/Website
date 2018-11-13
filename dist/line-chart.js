@@ -159,7 +159,13 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
       .style("font-family", "IBM_Plex_Sans")
       .style("font-size", "14px")
       .attr("transform", "translate(0," + (height) + ")")
-      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%Y")));
+      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%Y")))
+      .selectAll("text")
+        .attr("y", 15)
+        .attr("x", 15)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(-15)")
+        .style("text-anchor", "end");
   }
   else{
     svg.append("g")
@@ -189,7 +195,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
 
   //Label for X axis
   svg.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + (ordinal ? 30 : 20)) + ")")
     .style("text-anchor", "middle")
     .style("font-family", "IBM_Plex_Sans")
     .style("font-size", "14px")

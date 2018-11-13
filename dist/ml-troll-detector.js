@@ -59,8 +59,8 @@ function onKeyDown(e){
   }
 }
 
-$input.on('keyup', check_characters);
-$input.on('keydown', onKeyDown);
+$input.on('keyup input', check_characters);
+$input.on('keydown input', onKeyDown);
 
 /*
   Analyze Tweets
