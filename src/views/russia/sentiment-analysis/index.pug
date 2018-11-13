@@ -12,9 +12,9 @@ block vars
 
 block body 
   include ../../components/line-graph.pug
-  +line_chart("sentiment-spike", "#eb974e,#049372", 300, "Sentiment", "Relative Density", "/assets/data/sentiment_spike.csv", "false", 2, "Troll Tweets,Random Tweets")
-  +line_chart("sentiment-no-spike", "#eb974e,#049372", 300, "Sentiment", "Relative Density", "/assets/data/sentiment_no_spike.csv", "false", 2, "Troll Tweets,Random Tweets")
-  +line_chart("trump-clinton", "#F03434,#3A539B", 300, "Time", "Average Troll Sentiment", "/assets/data/trump-clinton.csv", "false", 2, "Donald Trump,Hillary Clinton", "true", "true")
+  +line_chart("sentiment-spike", "#eb974e,#049372", 300, "Sentiment Score", "Relative Density", "/assets/data/sentiment_spike.csv", "false", 2, "Troll Tweets,Random Tweets", "Sentiment Distribution of Troll Tweets vs. Random Tweets")
+  +line_chart("sentiment-no-spike", "#eb974e,#049372", 300, "Sentiment Score", "Relative Density", "/assets/data/sentiment_no_spike.csv", "false", 2, "Troll Tweets,Random Tweets", "Sentiment Distribution of Troll Tweets vs. Random Tweets (Cleaned)")
+  +line_chart("trump-clinton", "#F03434,#3A539B", 300, "Time", "Average Troll Sentiment", "/assets/data/trump-clinton.csv", "false", 2, "Donald Trump,Hillary Clinton", "Average Troll Sentiment of Donald Trump vs. Clinton", "true", "true")
   //- +line_chart("midterms", "#049372", 300, "Time", "Average Troll Sentiment", "/assets/data/midterms.csv", "false", 1, "2018 Midterms", "true", "true", "true")
   br
   br

@@ -39,7 +39,7 @@ function generateTooltipMultiline(json) {
   return "<h4>" + header + "</h4>" + responseStr;
 }
 
-var margin = {top: 30, right: 40, bottom: 50, left: 60};
+var margin = {top: 50, right: 40, bottom: 50, left: 60};
 var graphLength = d3.selectAll(".line_chart").size(),
     dataForGraphs = new Array(graphLength),
     bisectors = new Array(graphLength);
@@ -178,6 +178,15 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
       .call(d3.axisBottom(x).ticks(4));
   }
 
+  //Add Title
+  svg.append("text")
+    .attr("transform", "translate(" + (width / 2) + " ,-20)")
+    .style("text-anchor", "middle")
+    .style("font-family", "IBM_Plex_Sans")
+    .style("font-size", "14px")
+    .style("font-weight", "bold")
+    .text(currentThis.dataset.title);
+
   //Add the Y Axis
   svg.append("g")
     .style("font-family", "IBM_Plex_Sans")
@@ -204,6 +213,37 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
     .style("font-size", "14px")
     .style("font-weight", "bold")
     .text(xLabel);
+
+  //Add grayed box for the cleaned dataset
+  console.log(currentThis.id);
+  console.log(currentThis.id == "sentiment-no-spike");
+  if(currentThis.id == "sentiment-no-spike"){
+    console.log("te");
+    svg.append("rect")
+      .attr("x", x(-0.1))
+      .attr("y", 0)
+      .attr("width", x(0.1) - x(-0.1))
+      .attr("height", height)
+      .attr("fill", "#f8f8f8");
+
+    svg.append("line")
+      .attr("x1", x(-0.1))
+      .attr("x2", x(-0.1))
+      .attr("y1", 0)
+      .attr("y2", height)
+      .style("stroke", "#cbcbcb")
+      .style("stroke-width", "3")
+      .style("stroke-dasharray", "5,5");
+
+    svg.append("line")
+      .attr("x1", x(0.1))
+      .attr("x2", x(0.1))
+      .attr("y1", 0)
+      .attr("y2", height)
+      .style("stroke", "#cbcbcb")
+      .style("stroke-width", "3")
+      .style("stroke-dasharray", "5,5");
+  }
 }
 
 d3.selectAll(".line_chart").each(function(d, index){

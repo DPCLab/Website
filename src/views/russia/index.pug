@@ -24,7 +24,7 @@ html(lang='en')
         br
       br
       .columns.is-centered
-        .column.is-12-mobile.is-12-tablet.is-8-desktop
+        .column.is-12-mobile.is-12-tablet.is-10-desktop
           hr
           each post in ["intro-to-russian-meddling", "machine-learning-troll-detection", "troll-explorer"]
             .post.columns
@@ -35,11 +35,12 @@ html(lang='en')
               .column
                 h1
                   a(href = "./" + post)=data.title
+                p.is-size-5=data.subtitle
+                br
                 p.heading
                   span.tag-inline=data.tag
                   | &nbsp;•&nbsp;
                   span(style = "font-size:14px;") #{data.date}
-                p=data.description
             hr 
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../dist/script-min.js')
