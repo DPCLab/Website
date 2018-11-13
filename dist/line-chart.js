@@ -7,7 +7,7 @@ d3.select(window).on('resize', function(){
           width = d3.select("#body").node().offsetWidth - margin.left - margin.right,
           height = parseInt(this.dataset.height) - margin.top - margin.bottom;
 
-      drawGraph(this, dataForGraphs[i], totalForGraphs[i], width, height, this.dataset.accent, d3.select(this.firstChild), bisectors[i], this.dataset.x, this.dataset.y, this.dataset.scatter, numLinesGraphs[i], colorsForGraphs[i], this.dataset.shade);
+      drawGraph(this, dataForGraphs[i], width, height, this.dataset.accent, d3.select(this.firstChild), bisectors[i], this.dataset.x, this.dataset.y, this.dataset.scatter, this.dataset.lines, this.dataset.accent.split(","), this.dataset.ordinal);
     });
   }, 500);
 });
@@ -15,67 +15,93 @@ d3.select(window).on('resize', function(){
 /*
   Line Chart
 */
-var margin = {top: 20, right: 20, bottom: 50, left: 50};
-var graphLength = d3.selectAll(".line_chart").size(),
-    dataForGraphs = new Array(graphLength),
-    totalForGraphs = new Array(graphLength),
-    bisectors = new Array(graphLength),
-    colorsForGraphs = new Array(graphLength),
-    numLinesGraphs = new Array(graphLength);
 
-function drawGraph(currentThis, data, total, width, height, accent, tooltip, bisector, xLabel, yLabel, scatter, numLines, colors, shade){
-  var x = d3.scalePoint().rangeRound([0, width]).padding(0.1);
-  var y = d3.scaleLinear().rangeRound([height, 0]);
-  var tooltipText;
+//Tooltip
+function generateTooltipMultiline(json) {
+  var responseStr = "", header = json.title;
 
-  thisNode = d3.select(currentThis);
+  json.responses = json.responses.map(function(d, i){
+    return {
+      data: d,
+      color: json.colors[i]
+    };
+  });
 
-  //Create the line
-  var lines = [],
-      line;
-
-  for(var i = 0; i < numLines; i++){
-    line = d3.line()
-      .x(function(d){ return x(d.x); })
-      .y(function(d){ return y(d.y[i]); });
-
-    lines.push(line);
+  for(var i = 0; i < json.responses.length; i++){
+    responseStr += "<div class = 'bubble' style = 'background:" + json.responses[i].color + "'></div> <span>" + json.labels[i] + ": " + json.responses[i].data.toFixed(2) + "</span><br>";
   }
 
+  if(typeof json.title == "object") header = (header.getMonth() + 1) + "/" + header.getFullYear(); //Format date
+
+  return "<h4>" + header + "</h4>" + responseStr;
+}
+
+var margin = {top: 20, right: 40, bottom: 50, left: 60};
+var graphLength = d3.selectAll(".line_chart").size(),
+    dataForGraphs = new Array(graphLength),
+    bisectors = new Array(graphLength);
+
+function drawGraph(currentThis, data, width, height, accent, tooltip, bisector, xLabel, yLabel, scatter, numLines, colors, ordinal){
+  var thisNode = d3.select(currentThis);
+
+  //Clear all existing elements in grpah
   thisNode.select('svg').selectAll("*").remove();
 
-  x.domain(data.map(function(d) { return "" + d.x; }));
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.y); })]);
-  x.invert = d3.scaleQuantize().domain(x.range()).range(x.domain());
+  //Create the line(s)
+  var x = d3.scalePoint().rangeRound([0, width]).padding(0.1);
+  if(ordinal) x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().rangeRound([height, 0]);
+
+  var lines = [];
+  for(var i = 0; i < numLines; i++){
+    lines.push(d3.line()
+      .x(function(d){ return x(d.x); })
+      .y(function(d){ return y(d.y[i]); }));
+  }
+
+  //Set Domains
+  if(ordinal) {
+    x.domain(d3.extent(data, function(d) { return d.x; }));
+    y.domain([-1, 1]);
+  }
+  else {
+    x.domain(data.map(function(d) { return "" + d.x; }));
+    y.domain([0, d3.max(data, function(d) { return d3.max(d.y); })]);
+    x.invert = d3.scaleQuantize().domain(x.range()).range(x.domain());
+  }
 
   var svg = thisNode.select("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .on("mousemove", function(){
-      var x0 = x.invert(d3.mouse(this)[0]),
-          d;
+    .on("mouseover", function(){
+      var x0 = x.invert(d3.mouse(this)[0] - margin.left),
+        d = data[bisector(data, x0)];
 
-      for(var i = 0; i < data.length; i++) {
-        if(data[i].x == x0) {
-          d = data[i - 1];
-          break;
-        }
-      }
-
-      if(numLines > 1) tooltipText = generateTooltipMultiline({title: d.x, responses: d.y, colors: colors, total: total, labels: currentThis.dataset.labels.split(",")});
-      else tooltipText = generateTooltip({title: d.x, responses: d.y, percentage: d.y / total});
-      tooltip.classed("hidden", false).html(tooltipText);
-
-      tooltip.style("left", x(d.x) + margin.left - Math.round(tooltip.node().offsetWidth / 2) + "px")
-        .style("top", y(d3.max(d.y)) - Math.round(tooltip.node().offsetHeight) - 12 + margin.top + "px");
+      if(d != null) tooltip.style("left", x(d.x) + margin.left - Math.round(tooltip.node().offsetWidth / 2) + "px")
+        .style("top", y(d3.max(d.y)) - Math.round(tooltip.node().offsetHeight) - 12 + margin.top + "px")
+        .classed("hidden", false)
+        .html(generateTooltipMultiline({title: d.x, responses: d.y, colors: colors, labels: currentThis.dataset.labels.split(",")}));
+      else tooltip.classed("hidden", true).html("");
 
     })
     .on("mouseout", function(d){
-      var e = d3.event.toElement;
-      if(e && e.parentNode.parentNode != this.parentNode && e.parentNode != this.parentNode && e != this.parentNode) tooltip.classed("hidden", true);
+      console.log("yo");
+      tooltip.classed("hidden", true);
     })
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  //Add horizontal line if ordinal
+  if(ordinal){
+    svg.append("line")
+      .attr("class", "mean-line")
+      .attr("x1", x(data[0].x))
+      .attr("x2", x(data[data.length - 1].x))
+      .attr("y1", y(0) + 1)
+      .attr("y2", y(0) + 1)
+      .style("stroke", "#ccc")
+      .style("stroke-dasharray", "1");
+  }
 
   for(var i = 0; i < numLines; i++){
     // Add the line path.
@@ -88,23 +114,21 @@ function drawGraph(currentThis, data, total, width, height, accent, tooltip, bis
       .attr("d", lines[i]);
   }
 
-  // for(var i = 0; i < numLines; i++){
-  //   svg.selectAll(".dot-" + i)
-  //     .data(data)
-  //     .enter().append("circle")
-  //     .attr("class", "dot-" + i)
-  //     .style("fill", colors[i])
-  //     .attr("cx", function(d){return x(d.x);})
-  //     .attr("cy", function(d){return y(d.y[i]);})
-  //     .attr("r", 5);
-  // }
-
   //Add the X Axis
-  svg.append("g")
-    .style("font-family", "IBM_Plex_Sans")
-    .style("font-size", "14px")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(d3.scalePoint().domain([-1, 0, 1]).rangeRound([0, width])));
+  if(ordinal){
+    svg.append("g")
+      .style("font-family", "IBM_Plex_Sans")
+      .style("font-size", "14px")
+      .attr("transform", "translate(0," + (height) + ")")
+      .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%m/%Y")));
+  }
+  else{
+    svg.append("g")
+      .style("font-family", "IBM_Plex_Sans")
+      .style("font-size", "14px")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(d3.scalePoint().domain([-1, 0, 1]).rangeRound([0, width])));
+  }
 
   //Add the Y Axis
   svg.append("g")
@@ -146,21 +170,19 @@ d3.selectAll(".line_chart").each(function(d, index){
       numLines = this.dataset.lines,
       currentThis = this;
 
-  var data = [],
-      total = 0;
+  var data = [];
 
   $.ajax({
     url: csv,
     success: function (csvd) {
-      //data = $.csv.toArrays(csvd);
       csvd.split("\n").map(function(d){
         var temp = d.split(",");
         if(temp[0]){
-          total += parseFloat(temp[1]);
+          var parseTime = d3.timeParse("%m/%Y");
           data.push({
-            x: temp[0],
+            x: currentThis.dataset.ordinal ? parseTime(temp[0]) : temp[0],
             y: temp.slice(1).map(function(element){
-              return parseFloat(element)
+              return parseFloat(element);
             })
           });
         }
@@ -169,17 +191,14 @@ d3.selectAll(".line_chart").each(function(d, index){
       var bisector = d3.bisector(function(d) { return d.x; }).right;
 
       dataForGraphs[index] = data;
-      totalForGraphs[index] = total;
       bisectors[index] = bisector;
-      numLinesGraphs[index] = numLines;
-      colorsForGraphs[index] = colors;
 
       var width = d3.select("#body").node().offsetWidth - margin.left - margin.right,
           height = parseInt(currentElement.dataset.height) - margin.top - margin.bottom;
 
       thisNode.append("svg");
 
-      drawGraph(currentThis, data, total, width, height, accent, tooltip, bisector, xLabel, yLabel, currentElement.dataset.scatter, numLines, colors, currentElement.dataset.shade);
+      drawGraph(currentThis, data, width, height, accent, tooltip, bisector, xLabel, yLabel, currentElement.dataset.scatter, numLines, colors, currentElement.dataset.ordinal);
 
       if(numLines > 1){
         var labels = currentElement.dataset.labels.split(",");
@@ -190,7 +209,7 @@ d3.selectAll(".line_chart").each(function(d, index){
           .selectAll("p").data(colors)
           .enter().append("p")
             .html(function(d, i){
-              return "<div class = 'bubble' style = 'background:" + d + "'></div> " + labels[i];
+              return "<div class = 'bubble' style = 'background:" + d + "'></div> " + labels[i] + "<br>";
             });
       }
     },

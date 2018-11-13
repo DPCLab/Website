@@ -12,8 +12,10 @@ block vars
 
 block body 
   include ../../components/line-graph.pug
-  +line_chart("sentiment-spike", "#F03434,#3A539B", 300, "Sentiment", "TODO: ADD Y-Axis Label", "/assets/data/sentiment_spike.csv", "false", 2, "Troll Tweets,Random Tweets", "false")
+  +line_chart("sentiment-spike", "#F03434,#3A539B", 300, "Sentiment", "Density", "/assets/data/sentiment_spike.csv", "false", 2, "Troll Tweets,Random Tweets")
+  +line_chart("sentiment-no-spike", "#F03434,#3A539B", 300, "Sentiment", "Density", "/assets/data/sentiment_no_spike.csv", "false", 2, "Troll Tweets,Random Tweets")
+  +line_chart("trump-clinton", "#F03434,#3A539B", 300, "Time", "Average Troll Sentiment", "/assets/data/trump-clinton.csv", "false", 2, "Donald Trump,Hillary Clinton", "true")
   
 block scripts
   script(src = "/bower_components/d3/d3.min.js")
-  script(src = "/dist/line-chart-min.js")
+  script(src = "/dist/line-chart.js")
