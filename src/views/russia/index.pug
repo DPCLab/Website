@@ -24,9 +24,9 @@ html(lang='en')
         br
       br
       .columns.is-centered
-        .column.is-6
+        .column.is-7
           hr
-          each post in ["intro-to-russian-meddling", "machine-learning-troll-detection"]
+          each post in ["intro-to-russian-meddling", "machine-learning-troll-detection", "troll-explorer"]
             .post.columns
               -var data = JSON.parse(read("./src/views/russia/" + post + "/config.json"));
               .column.is-narrow
@@ -41,21 +41,6 @@ html(lang='en')
                   span(style = "font-size:14px;") #{data.date}
                 p=data.description
             hr 
-          .post.columns
-            .column.is-narrow
-              .img.image.thumbnail
-                img(src = "/assets/graphics/russia/troll-explorer/thumb.png")
-            .column
-              h1
-                a(href = "./troll-explorer") Interactive Explorer
-              p.heading
-                span.tag-inline RUSSIAN MEDDLING PT. 4
-                | &nbsp;•&nbsp;
-                span(style = "font-size:14px;") NOV. 13, 2018
-              p We used machine learning to identify patterns of language in Russian government trolls. Use this interactive online tool to learn more about the ways that Russian state-sponsored government trolls post online—and how it compares to your own language.
-            hr 
-      br
-      hr
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../dist/script-min.js')
     script(src = "//static.getclicky.com/js" type = "text/javascript")
