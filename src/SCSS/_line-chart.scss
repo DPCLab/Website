@@ -12,5 +12,14 @@
     position: absolute;
     white-space: nowrap;
     background: white;
+    pointer-events: none;
+    padding: 2px;
+    box-sizing: border-box;
+  }
+  .position-line, path{
+    pointer-events: none;
+  }
+  .hidden{
+    display: none;
   }
 }

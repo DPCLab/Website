@@ -7,7 +7,7 @@ d3.select(window).on('resize', function(){
           width = d3.select("#body").node().offsetWidth - margin.left - margin.right,
           height = parseInt(this.dataset.height) - margin.top - margin.bottom;
 
-      drawGraph(this, dataForGraphs[i], width, height, this.dataset.accent, d3.select(this.firstChild), bisectors[i], this.dataset.x, this.dataset.y, this.dataset.scatter, this.dataset.lines, this.dataset.accent.split(","), this.dataset.ordinal);
+      drawGraph(this, dataForGraphs[i], width, height, this.dataset.accent, bisectors[i], this.dataset.x, this.dataset.y, this.dataset.scatter, this.dataset.lines, this.dataset.accent.split(","), this.dataset.ordinal);
     });
   }, 500);
 });
@@ -41,8 +41,10 @@ var graphLength = d3.selectAll(".line_chart").size(),
     dataForGraphs = new Array(graphLength),
     bisectors = new Array(graphLength);
 
-function drawGraph(currentThis, data, width, height, accent, tooltip, bisector, xLabel, yLabel, scatter, numLines, colors, ordinal){
+function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, yLabel, scatter, numLines, colors, ordinal){
   var thisNode = d3.select(currentThis);
+  var tooltip = d3.select(currentThis.firstChild);
+  var useTooltip = currentThis.dataset.usetooltip;
 
   //Clear all existing elements in grpah
   thisNode.select('svg').selectAll("*").remove();
@@ -62,7 +64,7 @@ function drawGraph(currentThis, data, width, height, accent, tooltip, bisector, 
   //Set Domains
   if(ordinal) {
     x.domain(d3.extent(data, function(d) { return d.x; }));
-    y.domain([-1, 1]);
+    y.domain([-0.4, 0.8]);
   }
   else {
     x.domain(data.map(function(d) { return "" + d.x; }));
@@ -73,23 +75,54 @@ function drawGraph(currentThis, data, width, height, accent, tooltip, bisector, 
   var svg = thisNode.select("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .on("mouseover", function(){
-      var x0 = x.invert(d3.mouse(this)[0] - margin.left),
-        d = data[bisector(data, x0)];
+    .on("mousemove", function(){
+      if(useTooltip){
+        var positionLine = thisNode.select(".position-line");
+        var x0 = x.invert(d3.mouse(this)[0] - margin.left),
+          d = data[bisector(data, x0)];
 
-      if(d != null) tooltip.style("left", x(d.x) + margin.left - Math.round(tooltip.node().offsetWidth / 2) + "px")
-        .style("top", y(d3.max(d.y)) - Math.round(tooltip.node().offsetHeight) - 12 + margin.top + "px")
-        .classed("hidden", false)
-        .html(generateTooltipMultiline({title: d.x, responses: d.y, colors: colors, labels: currentThis.dataset.labels.split(",")}));
-      else tooltip.classed("hidden", true).html("");
+        if(d != null) {
+          tooltip.style("top", height - 90 + margin.top + "px")
+          .classed("hidden", false)
+          .html(generateTooltipMultiline({title: d.x, responses: d.y, colors: colors, labels: currentThis.dataset.labels.split(",")}))
+          .style("left", (tooltip.node().offsetWidth + d3.mouse(this)[0] + 30 > d3.select("#body").node().offsetWidth ? x(d.x) + margin.left - 10 - tooltip.node().offsetWidth : x(d.x) + margin.left + 10) + "px");
 
+          positionLine.attr("x1", x(d.x) + margin.left)
+            .attr("x2", x(d.x) + margin.left)
+            .classed("hidden", false);
+
+          for(var i = 0; i < numLines; i++){
+            d3.select(currentThis).select(".dot-" + i).attr("cx", x(d.x))
+              .attr("cy", y(d.y[i]))
+              .classed("hidden", false);
+          }
+        }
+        else {
+          tooltip.classed("hidden", true);
+          positionLine.classed("hidden", true);
+          svg.selectAll(".dot").classed("hidden", true);
+        }
+      }
     })
     .on("mouseout", function(d){
-      console.log("yo");
+      var positionLine = thisNode.select(".position-line");
       tooltip.classed("hidden", true);
+      positionLine.classed("hidden", true);
+      svg.selectAll(".dot").classed("hidden", true);
     })
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  //Tooltip line
+  thisNode.select('svg').append("line")
+    .attr("class", "position-line hidden")
+    .attr("x1", x(0))
+    .attr("y1", y(ordinal ? -0.4 : 0) + margin.top)
+    .attr("x2", x(0))
+    .attr("y2", y(ordinal ? 0.8 : 1) + margin.top)
+    .style("stroke", "black")
+    .style("stroke-width", "1")
+    .style("stroke-dasharray", "5,5");
 
   //Add horizontal line if ordinal
   if(ordinal){
@@ -112,6 +145,12 @@ function drawGraph(currentThis, data, width, height, accent, tooltip, bisector, 
       .style("stroke-width", "2px")
       .style("fill", "none")
       .attr("d", lines[i]);
+
+    // Add tooltip dots
+    svg.append("circle")
+      .attr("class", "dot-" + i + " dot hidden")
+      .style("fill", colors[i])
+      .attr("r", 5);
   }
 
   //Add the X Axis
@@ -166,7 +205,6 @@ d3.selectAll(".line_chart").each(function(d, index){
       csv = this.dataset.csv,
       xLabel = this.dataset.x,
       yLabel = this.dataset.y,
-      tooltip = d3.select(this.firstChild),
       numLines = this.dataset.lines,
       currentThis = this;
 
@@ -198,7 +236,7 @@ d3.selectAll(".line_chart").each(function(d, index){
 
       thisNode.append("svg");
 
-      drawGraph(currentThis, data, width, height, accent, tooltip, bisector, xLabel, yLabel, currentElement.dataset.scatter, numLines, colors, currentElement.dataset.ordinal);
+      drawGraph(currentThis, data, width, height, accent, bisector, xLabel, yLabel, currentElement.dataset.scatter, numLines, colors, currentElement.dataset.ordinal);
 
       if(numLines > 1){
         var labels = currentElement.dataset.labels.split(",");
