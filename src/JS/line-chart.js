@@ -50,7 +50,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
   thisNode.select('svg').selectAll("*").remove();
 
   //Create the line(s)
-  var x = d3.scalePoint().rangeRound([0, width]).padding(0.1);
+  var x = d3.scaleLinear().range([0, width]);
   if(ordinal) x = d3.scaleTime().range([0, width]);
   var y = d3.scaleLinear().rangeRound([height, 0]);
 
@@ -67,7 +67,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
     y.domain([-0.4, 0.8]);
   }
   else {
-    x.domain(data.map(function(d) { return "" + d.x; }));
+    x.domain([-1.2, 1.2]);
     y.domain([0, d3.max(data, function(d) { return d3.max(d.y); })]);
     x.invert = d3.scaleQuantize().domain(x.range()).range(x.domain());
   }
@@ -166,7 +166,7 @@ function drawGraph(currentThis, data, width, height, accent, bisector, xLabel, y
       .style("font-family", "IBM_Plex_Sans")
       .style("font-size", "14px")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(d3.scalePoint().domain([-1, 0, 1]).rangeRound([0, width])));
+      .call(d3.axisBottom(x).ticks(4));
   }
 
   //Add the Y Axis
@@ -218,7 +218,7 @@ d3.selectAll(".line_chart").each(function(d, index){
         if(temp[0]){
           var parseTime = d3.timeParse("%m/%Y");
           data.push({
-            x: currentThis.dataset.ordinal ? parseTime(temp[0]) : temp[0],
+            x: currentThis.dataset.ordinal ? parseTime(temp[0]) : parseFloat(temp[0]),
             y: temp.slice(1).map(function(element){
               return parseFloat(element);
             })
