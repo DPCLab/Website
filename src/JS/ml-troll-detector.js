@@ -7,6 +7,14 @@ var MAX_CHARACTERS = 240;
 var typingTimer;
 var $input = $('.troll-detector .text');
 
+function isMobile(){
+  return window.innerWidth < 720;
+}
+
+if(isMobile()){
+  $(".placeholder").remove();
+}
+
 $(document).ready(function(){
   $("#loading").hide();
 
@@ -18,14 +26,15 @@ $(document).ready(function(){
     analyzeTweet();
   }
 
-  //Type
-  new Typed("#title", {
-    strings: ["How do trolls talk?", "How do trolls divide?", "How do trolls lie?", "How do trolls tweet?", "How do trolls type?", "How do trolls sound?", "How do trolls anger?", "How do trolls hate?"],
-    typeSpeed: 45,
-    backDelay: 2000,
-    smartBackspace: true,
-    loop: !0
-  });
+  if(!isMobile()){
+    new Typed("#title", {
+      strings: ["How do trolls talk?", "How do trolls divide?", "How do trolls lie?", "How do trolls tweet?", "How do trolls type?", "How do trolls sound?", "How do trolls anger?", "How do trolls hate?"],
+      typeSpeed: 45,
+      backDelay: 2000,
+      smartBackspace: true,
+      loop: !0
+    });
+  }
 });
 
 function isEnteredKey(keyCode){ //Checks whether the keycode will produce a longer text (i.e. "a" will return false but "SHIFT" will not)
