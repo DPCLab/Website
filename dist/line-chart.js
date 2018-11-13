@@ -247,7 +247,7 @@ d3.selectAll(".line_chart").each(function(d, index){
           .selectAll("p").data(colors)
           .enter().append("p")
             .html(function(d, i){
-              return "<div class = 'bubble' style = 'background:" + d + "'></div> " + labels[i] + "<br>";
+              return "<div class = 'bubble' style = 'background:" + d + "'></div> " + labels[i];
             });
       }
     },
