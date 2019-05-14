@@ -2,7 +2,7 @@
 
 mixin ml-troll-detector()
   .troll-detector
-    .textbox(autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false")
+    .textbox(autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled)
       .level
         .level-left
           span#troll-pie.pie.level-item.hidden
@@ -10,7 +10,7 @@ mixin ml-troll-detector()
       hr
       span#loading(hidden)
         i.fas.fa-spinner.fa-spin 
-      #text.text(contenteditable="true")
-      .placeholder Type a tweet here.
+      #text.text(contenteditable="false")
+      .placeholder Unfortunately, the troll content analyzer has been archived due to financial constraints and is no longer operational.
       .character-limit 0/240
     span.caption All percentages shown in the tool above indicate the scaled confidence (from -100% to +100%) of the model that a text is theoretically a Russian IRA troll Tweet (positive values) or an organic Tweet (negative values) in an evenly distributed dataset. 
