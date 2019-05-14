@@ -16,6 +16,7 @@ gulp.task('default', ['views', 'sass', 'compress', 'webserver'], function() {
   gulp.watch('src/views/components/*.pug', ['views']);
   gulp.watch('src/views/sections/*.pug', ['views']);
   gulp.watch('src/JS/*.js', ['compress']);
+  gulp.watch('src/JS/*.json', ['compress']);
   gulp.watch('src/JS/components/*.js', ['compress']);
 });
 
@@ -63,6 +64,9 @@ gulp.task('compress', function() {
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));
   gulp.src(["src/JS/china.js"])
+    .pipe(minify({}))
+    .pipe(gulp.dest('dist'));
+  gulp.src(["src/JS/data.json"])
     .pipe(minify({}))
     .pipe(gulp.dest('dist'));
   gulp.src(["src/JS/piechart.js"])

@@ -49,7 +49,7 @@ function updatePosts(){
   //Add the loading icon
   $("#loading").show();
 
-  $.get("https://cs.dpccdn.net/v1/censored_posts", function(data){
+  $.get("../../dist/data.json", function(data){
     //Display Posts
     d3.select("#posts").selectAll("*").remove(); //Get rid of existing children
     displayPosts(data.posts, data.lastUpdated);
