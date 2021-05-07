@@ -27,6 +27,6 @@
     "gulp-webserver": "^0.9.1"
   },
   "dependencies": {
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   }
 }
